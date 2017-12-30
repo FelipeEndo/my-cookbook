@@ -20,7 +20,7 @@ class RecipesController < ApplicationController
     ingredients = params[:recipe][:ingredients]
     method = params[:recipe][:method]
     cuisine = params[:recipe][:cuisine]
-    r = Recipe.create(title: title, recipe_type: type, difficulty: difficulty, cook_time: cook_time, 
+    r = Recipe.create(title: title, recipe_type_id: type, difficulty: difficulty, cook_time: cook_time, 
     ingredients: ingredients, method: method, cuisine_id: cuisine)
     if r.save
       @recipe = Recipe.find_by title: title
@@ -36,4 +36,5 @@ end
   
     def options_for_select
      @cuisine_options_for_select = Cuisine.all.collect {|c| [ c.name, c.id ] }
+     @recipe_type_options_for_select = RecipeType.all.collect {|t| [ t.name, t.id ] }
     end
