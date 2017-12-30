@@ -3,6 +3,7 @@ class RecipesController < ApplicationController
   def show
     id = params[:id]
     @recipe = Recipe.find(id)
+    @cuisine = Cuisine.find(id).name
   end
   
   def new
@@ -18,12 +19,12 @@ class RecipesController < ApplicationController
     cook_time = params[:recipe][:cook_time]
     ingredients = params[:recipe][:ingredients]
     method = params[:recipe][:method]
-    cuisine_id = params[:recipe][:cuisine_id]
+    cuisine = params[:recipe][:cuisine]
     r = Recipe.new(title: title, recipe_type: type, difficulty: difficulty, cook_time: cook_time, 
-    ingredients: ingredients, method: method, cuisine_id: cuisine_id)
+    ingredients: ingredients, method: method, cuisine_id: cuisine)
     r.save
     @recipe = Recipe.find_by title: title
-    @cuisine = Cuisine.find(cuisine_id).name
+    @cuisine = Cuisine.find(cuisine).name
   end
 end
 
