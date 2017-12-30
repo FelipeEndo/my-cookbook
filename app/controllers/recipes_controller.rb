@@ -7,7 +7,7 @@ class RecipesController < ApplicationController
   end
   
   def new
-    @receita = Recipe.new
+    @recipe = Recipe.new
     options_for_select
     
   end
