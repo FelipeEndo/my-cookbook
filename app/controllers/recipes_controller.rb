@@ -20,11 +20,15 @@ class RecipesController < ApplicationController
     ingredients = params[:recipe][:ingredients]
     method = params[:recipe][:method]
     cuisine = params[:recipe][:cuisine]
-    r = Recipe.new(title: title, recipe_type: type, difficulty: difficulty, cook_time: cook_time, 
+    r = Recipe.create(title: title, recipe_type: type, difficulty: difficulty, cook_time: cook_time, 
     ingredients: ingredients, method: method, cuisine_id: cuisine)
-    r.save
-    @recipe = Recipe.find_by title: title
-    @cuisine = Cuisine.find(cuisine).name
+    if r.save
+      @recipe = Recipe.find_by title: title
+      @cuisine = Cuisine.find(cuisine).name
+    else
+      render '_error_messages'
+    end
+    
   end
 end
 
