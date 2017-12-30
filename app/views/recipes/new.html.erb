@@ -10,8 +10,9 @@
   </div>
   
   <div>
-    <%= f.label :cuisine, 'Cozinha' %>
-    <%= f.text_field :cuisine %>
+    <%= f.label :cuisine_id, 'Cozinha' %>
+    <%= f.select(:cuisine_id, @cuisine_options_for_select) %>
+
   </div>
 
   <div>
@@ -34,7 +35,7 @@
     <%= f.text_field :method %>
   </div>
   
-  <div>
+  <div> 
     <%= f.submit 'Enviar' %>
   </div>
 
