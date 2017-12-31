@@ -4,11 +4,15 @@
 <% @cuisines.each do |cuisine| %>
 <h3><%= link_to cuisine.name, cuisine_path(cuisine.id) %></h3>
 <% end %>
+<h2>Tpos de prato</h2>
+<% @recipe_types.each do |recipe_type| %>
+<h3><%= link_to recipe_type.name, recipe_type_path(recipe_type.id) %></h3>
+<% end %>
 
 <% @recipes.each do |recipe| %>
 <h1><%=link_to recipe.title, recipe_path(recipe.id)%></h1>
   <ul>
-    <li><%=recipe.recipe_type.name%></li>
+    <li><%= recipe.recipe_type.name%></li>
     <li><%=recipe.cuisine.name%></li>
     <li><%=recipe.difficulty%></li>
     <li><%=recipe.cook_time%> minutos </li>
