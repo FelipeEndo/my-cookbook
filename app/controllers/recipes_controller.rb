@@ -53,6 +53,11 @@ class RecipesController < ApplicationController
       render '_error_messages'
     end
   end
+  
+  def search
+    @query = params[:query]
+    @results = Recipe.where(title: @query)
+  end
 end
 
   private

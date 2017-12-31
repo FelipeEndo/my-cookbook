@@ -1,5 +1,6 @@
 <h1>CookBook</h1>
 <p>Bem-vindo ao maior livro de receitas online</p>
+<%= render 'search_form' %>
 <h2>Cozinhas</h2>
 <% @cuisines.each do |cuisine| %>
 <h3><%= link_to cuisine.name, cuisine_path(cuisine.id) %></h3>
