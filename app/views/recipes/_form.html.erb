@@ -6,7 +6,7 @@
   
   <div>
     <%= f.label :cuisine, 'Cozinha' %>
-    <%= f.select(:cuisine, @cuisine_options_for_select) %>
+    <%= f.select(:cuisine, @cuisine_options_for_select, :id, :name) %>
   </div>
   
     <div>

@@ -1,24 +1,75 @@
-<h1>CookBook</h1>
-<p>Bem-vindo ao maior livro de receitas online</p>
-<%= render 'search_form' %>
-<h2>Cozinhas</h2>
-<% @cuisines.each do |cuisine| %>
-<h3><%= link_to cuisine.name, cuisine_path(cuisine.id) %></h3>
-<% end %>
-<h2>Tpos de prato</h2>
-<% @recipe_types.each do |recipe_type| %>
-<h3><%= link_to recipe_type.name, recipe_type_path(recipe_type.id) %></h3>
-<% end %>
-
-<% @recipes.each do |recipe| %>
-<h1><%=link_to recipe.title, recipe_path(recipe.id)%></h1>
-  <ul>
-    <li><%= recipe.recipe_type.name%></li>
-    <li><%=recipe.cuisine.name%></li>
-    <li><%=recipe.difficulty%></li>
-    <li><%=recipe.cook_time%> minutos </li>
-  </ul>
-  
-<% end %>
-
-<%= link_to 'Enviar uma receita', new_recipe_path %>
+<!DOCTYPE html> 
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <title>My Cookbook</title>
+  </head>
+  <body>
+    
+   <div id="menu">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">My Cookbook</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a  href="#">Home</a></li>
+          <li><a href="news.asp">Minhas Receitas</a></li>
+          <li><a href="contact.asp">Sair</a></li>
+          <li id="search-box"><%= render 'search_form' %></li>
+        </ul>
+      </div>
+    </nav>
+   </div>  
+    
+    <section class="sidenav">
+              
+       <h2>Tipo</h2>
+       <% @recipe_types.each do |recipe_type| %>
+         <h3><%= link_to recipe_type.name, recipe_type %></h3>
+       <% end %>
+       <h2>Cozinha</h2>
+       <% @cuisines.each do |cuisine| %>
+        <h3><%= link_to cuisine.name, cuisine %></h3>
+       <% end %>
+       <%= link_to 'Enviar uma receita', new_recipe_path, class:"btn btn-danger navbar-btn" %>
+    </section>
+ 
+ <div class="main">
+     <header>
+      <h1>CookBook</h1> 
+      <p>Bem-vindo ao maior livro de receitas online</p>
+    </header>   
+    
+    <section class="ultimas-receitas">
+      <div class="container">
+        <h2>Últimas Receitas</h2>
+            <% @recipes.each do |recipe| %>
+                <h3><%=link_to recipe.title, recipe%></h3>
+                <ul>
+                  <li><%= image_tag "receita-bolo-pote.jpg", size: "160", class:"recipe_photo"%></li>
+                  <li><b>Tipo:</b> <%= recipe.recipe_type.name%></li>
+                  <li><b>Cozinha:</b> <%=recipe.cuisine.name%></li>
+                  <li><b>Dificuldade:</b> <%=recipe.difficulty%></li>
+                  <li><b>Tempo:</b> <%=recipe.cook_time %> minutos</li>
+                </ul>
+            <% end %>
+     </div>
+     
+           <div class="container">
+            <h2>Favoritas dos Usuários</h2>
+              <% @recipes.each do |recipe| %>
+                <h3><%=link_to recipe.title, recipe%></h3>
+                <ul>
+                  <li><%= image_tag "receita-bolo-pote.jpg", size: "160", class:"recipe_photo"%></li>
+                  <li><b>Tipo:</b> <%= recipe.recipe_type.name%></li>
+                  <li><b>Cozinha:</b> <%=recipe.cuisine.name%></li>
+                  <li><b>Dificuldade:</b> <%=recipe.difficulty%></li>
+                  <li><b>Tempo:</b> <%=recipe.cook_time %> minutos</li>
+                </ul>
+            <% end %>
+     </div>
+    </section>
+  </div>
+  </body>
+</html>
