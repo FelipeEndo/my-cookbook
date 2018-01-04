@@ -4,15 +4,18 @@ class RecipesController < ApplicationController
     id = params[:id]
     @recipe = Recipe.find id
     @cuisine = Cuisine.find(id).name
+    options_for_select
   end
   
   def new
     @recipe = Recipe.new
     options_for_select
     
+    
   end
   
   def create
+    options_for_select
     recipe_params = params.require(:recipe).permit(:title, :recipe_type, :difficulty, :cook_time, :ingredients, :method, :cuisine)
     r  = Recipe.new(recipe_params)
     if r.save
@@ -30,6 +33,7 @@ class RecipesController < ApplicationController
   end
   
   def update
+    
     title = params[:recipe][:title]
     type = params[:recipe][:recipe_type]
     difficulty = params[:recipe][:difficulty]
@@ -56,6 +60,7 @@ end
   private
   
     def options_for_select
-     @cuisine_options_for_select = Cuisine.all
-     @recipe_type_options_for_select = RecipeType.all.collect {|t| [ t.name, t.id ] }
+    @recipe_all = Recipe.all
+    @recipe_type_all = RecipeType.all
+    @cuisine_all = Cuisine.all
     end

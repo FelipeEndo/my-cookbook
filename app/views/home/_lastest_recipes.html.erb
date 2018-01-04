@@ -1,5 +1,5 @@
 <h2>Últimas Receitas</h2>
-    <% @recipes.each do |recipe| %>
+    <% @recipe_all.each do |recipe| %>
       <h3><%=link_to recipe.title, recipe%></h3>
         <ul>
           <li><%= image_tag "receita-bolo-pote.jpg", size: "160", class:"recipe_photo"%></li>

@@ -1,10 +1,21 @@
-<%= form_for @recipe_type do |f| %>
-  <div>
+<div id="menu">
+    <%= render 'layouts/navbar' %>
+</div>  
+    
+<div class="sidenav">
+      <%= render 'layouts/navbar_side' %>
+</div>
+    
+<div class="main">
+<%= form_for @recipe_type, html: {class: 'basic-grey'} do |f| %>
+  <h1>Novo Tipo de Receita</h1>
+  <div class="field">
     <%= f.label :name, 'Nome' %>
     <%= f.text_field :name %>
   </div>
   
   <div> 
-    <%= f.submit 'Enviar' %>
+    <%= f.submit 'Enviar', class:'button' %>
   </div>
 <% end %>
+</div>

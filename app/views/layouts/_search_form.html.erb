@@ -1,4 +1,4 @@
-<%= form_tag("/search", :query => "get", class:"navbar-form navbar-left") do %>
+<%= form_tag("/search", method: "get", class:"navbar-form navbar-left") do %>
     <%= text_field_tag :query, "Pesquisar Receita", class: "form-control" %>
     <%= submit_tag "Buscar", class:"btn btn-default"%>
 <% end %>

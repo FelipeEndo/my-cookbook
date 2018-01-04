@@ -1,12 +1,16 @@
 class HomeController < ApplicationController
 
   def index
-    @recipes = Recipe.all
-    @cuisines = Cuisine.all
-    @recipe_types = RecipeType.all
+    options_for_select
   end
 
 end
 
-private
+  private
+  
+    def options_for_select
+      @recipe_all = Recipe.all
+      @recipe_type_all = RecipeType.all
+      @cuisine_all = Cuisine.all
+    end
 

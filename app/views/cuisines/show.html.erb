@@ -1,3 +1,13 @@
+<div id="menu">
+    <%= render 'layouts/navbar' %>
+</div>  
+    
+<div class="sidenav">
+      <%= render 'layouts/navbar_side' %>
+</div>
+    
+<div class="main">
+
 <h1><%= @cuisine.name%></h1>
 
 <% if @recipes.count > 0 %>
@@ -11,5 +21,5 @@
 <% else %>
  <p>Nenhuma receita encontrada para este tipo de cozinha</p>
 <% end %>
-
+</div>
 <%= link_to 'Voltar', root_path %>

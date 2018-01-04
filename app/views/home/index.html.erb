@@ -7,11 +7,11 @@
   <body>
     
    <div id="menu">
-    <%= render 'navbar' %>
+    <%= render 'layouts/navbar' %>
    </div>  
     
     <div class="sidenav">
-      <%= render 'navbar_side' %>
+      <%= render 'layouts/navbar_side' %>
     </div>
  
  <div class="main">
@@ -20,13 +20,13 @@
       <p>Bem-vindo ao maior livro de receitas online</p>
     </header>   
     
-    <section class="receitas">
+    <section class="recipes">
       <div class="container">
-        <%= render 'ultimas_receitas' %>
+        <%= render 'lastest_recipes' %>
       </div>
       
       <div class="container">
-        <%= render 'receitas_favoritas' %>
+        <%= render 'most_favorited_recipes' %>
       </div>
     </section>
     

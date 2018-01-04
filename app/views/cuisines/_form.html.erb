@@ -1,10 +1,20 @@
-<%= form_for @cuisines do |f| %>
-
-  <div>
-    <%= f.label :name, 'Nome' %>
-    <%= f.text_field :name %>
+<div id="menu">
+    <%= render 'layouts/navbar' %>
+   </div>  
+    
+    <div class="sidenav">
+      <%= render 'layouts/navbar_side' %>
+    </div>
+    
+ <div class="main">
+    <%= form_for @cuisines, html: {class: 'basic-grey'} do |f| %>
+      <h1>Nova Cozinha</h1>
+      <div class="field">
+        <%= f.label :name, 'Nome' %>
+        <%= f.text_field :name %>
+      </div>
+      <div> 
+        <%= f.submit 'Enviar', class: 'button' %>
+      </div>
+    <% end %>
   </div>
-  <div> 
-    <%= f.submit 'Enviar' %>
-  </div>
-<% end %>

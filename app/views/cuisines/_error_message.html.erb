@@ -1,2 +1,12 @@
-<h3>Você deve informar o nome da cozinha</h3>
-<%= link_to 'Voltar', new_cuisine_path %>
+   <div id="menu">
+    <%= render 'layouts/navbar' %>
+   </div>  
+    
+    <div class="sidenav">
+      <%= render 'layouts/navbar_side' %>
+    </div>
+    
+<div class="main">
+  <h3>Você deve informar o nome da cozinha</h3>
+  <%= link_to 'Voltar', new_cuisine_path %>
+</div>
