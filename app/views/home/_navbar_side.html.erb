@@ -1,0 +1,9 @@
+       <h2>Tipo</h2>
+       <% @recipe_types.each do |recipe_type| %>
+         <h3><%= link_to recipe_type.name, recipe_type %></h3>
+       <% end %>
+       <h2>Cozinha</h2>
+       <% @cuisines.each do |cuisine| %>
+        <h3><%= link_to cuisine.name, cuisine %></h3>
+       <% end %>
+       <%= link_to 'Enviar uma receita', new_recipe_path, class:"btn btn-danger navbar-btn" %>

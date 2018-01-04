@@ -1,0 +1,11 @@
+<h2>Favoritas por Usuários</h2>
+    <% @recipes.each do |recipe| %>
+      <h3><%=link_to recipe.title, recipe%></h3>
+        <ul>
+          <li><%= image_tag "receita-bolo-pote.jpg", size: "160", class:"recipe_photo"%></li>
+          <li><b>Tipo:</b> <%= recipe.recipe_type.name%></li>
+          <li><b>Cozinha:</b> <%=recipe.cuisine.name%></li>
+          <li><b>Dificuldade:</b> <%=recipe.difficulty%></li>
+          <li><b>Tempo:</b> <%=recipe.cook_time %> minutos</li>
+        </ul>
+    <% end %>
