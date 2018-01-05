@@ -6,13 +6,9 @@
   </head>
   <body>
     
-   <div id="menu">
+  <div id="menu">
     <%= render 'layouts/navbar' %>
-   </div>  
-    
-    <div class="sidenav">
-      <%= render 'layouts/navbar_side' %>
-    </div>
+  </div> 
  
  <div class="main">
      <header>
@@ -26,7 +22,7 @@
       </div>
       
       <div class="container">
-        <%= render 'most_favorited_recipes' %>
+        <% render 'most_favorited_recipes' %>
       </div>
     </section>
     

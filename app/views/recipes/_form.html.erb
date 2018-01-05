@@ -1,27 +1,29 @@
-   <div id="menu">
+<div id="menu">
     <%= render 'layouts/navbar' %>
-   </div>  
-    
-    <div class="sidenav">
-      <%= render 'layouts/navbar_side' %>
-    </div>
+</div> 
     
  <div class="main">
    
     <%= form_for @recipe, html: {class: 'basic-grey'} do |f| %>
-      <h1>Nova Receita</h1>
+    
+      <% if @recipe.title.nil? %>
+        <h1>Nova Receita</h1>
+      <% else %>
+        <h1>Editando <%= @recipe.title %></h1>
+      <% end %> 
+      
       <div class="field">
         <%= f.label :title, 'Título' %>
         <%= f.text_field :title %>
       </div>
       
       <div class="field">
-        <%= f.label :cuisine, 'Cozinha' %>
+        <%= f.label :cuisine_id, 'Cozinha' %>
         <%= f.collection_select(:cuisine_id, @cuisine_all, :id, :name) %>
       </div>
       
       <div class="field">
-        <%= f.label :recipe_type, 'Tipo da Receita' %>
+        <%= f.label :recipe_type_id, 'Tipo da Receita' %>
         <%= f.collection_select(:recipe_type_id, @recipe_type_all, :id, :name) %>
       </div>
     

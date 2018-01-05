@@ -1,6 +1,7 @@
 <h2>Últimas Receitas</h2>
     <% @recipe_all.each do |recipe| %>
-      <h3><%=link_to recipe.title, recipe%></h3>
+    <div class="recipe-list"
+      <h1><%=link_to recipe.title, recipe%></h1>
         <ul>
           <li><%= image_tag "receita-bolo-pote.jpg", size: "160", class:"recipe_photo"%></li>
           <li><b>Tipo:</b> <%= recipe.recipe_type.name%></li>
@@ -9,3 +10,4 @@
           <li><b>Tempo:</b> <%=recipe.cook_time %> minutos</li>
         </ul>
     <% end %>
+    </div>
