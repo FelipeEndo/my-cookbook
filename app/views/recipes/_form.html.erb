@@ -1,11 +1,19 @@
 <div id="menu">
     <%= render 'layouts/navbar' %>
 </div> 
+
+
+
     
  <div class="main">
    
     <%= form_for @recipe, html: {class: 'basic-grey'} do |f| %>
-    
+      <% if flash[:notice] %>
+      <div class="alert alert-warning">
+        <%= flash[:notice] %>
+      </div>
+      <% end %>
+      
       <% if @recipe.title.nil? %>
         <h1>Nova Receita</h1>
       <% else %>

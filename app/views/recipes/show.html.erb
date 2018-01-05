@@ -3,6 +3,13 @@
 </div> 
     
 <div class="main">  
+
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+  
   <h1><%= @recipe.title %></h1>
   <h3>Detalhes</h3>
   <p><%= @recipe.recipe_type.name %></p>

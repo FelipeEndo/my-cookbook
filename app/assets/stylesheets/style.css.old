@@ -40,7 +40,7 @@
 }
 
 .recipe-list h1{
-    font-size: 16px;
+    font-size: 24px;
 }
 
 .btn btn-danger navbar-btn{
@@ -91,6 +91,10 @@
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 5px;
+}
+
+.hidden{
+  display: none;
 }
 
 

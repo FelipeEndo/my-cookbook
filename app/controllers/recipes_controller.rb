@@ -16,12 +16,15 @@ class RecipesController < ApplicationController
     options_for_select
     recipe_params = params.require(:recipe).permit(:title, :cuisine_id, :recipe_type_id, :difficulty, :cook_time, :ingredients, :method)
     @recipe  = Recipe.new(recipe_params)
-    if @recipe.save
+    
+    if @recipe.valid?
+      @recipe.save
       #@recipe = Recipe.find_by title: params[:recipe][:title]
       @cuisine = Cuisine.find(@recipe.cuisine_id).name
-      redirect_to @recipe
+      redirect_to @recipe, notice: 'Receita Cadastrada com sucesso!'
     else
-      render '_error_messages'
+      redirect_to new_recipe_path, notice: 'Você deve informar todos os dados da receita'
+
     end
   end
   
@@ -37,7 +40,7 @@ class RecipesController < ApplicationController
     if @recipe.update(recipe_params)
       redirect_to @recipe
     else
-      render '_error_messages'
+      flash[:notice]='Você deve informar todos os dados da receita'
     end
   end
   
