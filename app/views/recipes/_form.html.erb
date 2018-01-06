@@ -1,15 +1,13 @@
 <div id="menu">
     <%= render 'layouts/navbar' %>
 </div> 
-
-
-
     
  <div class="main">
    
     <%= form_for @recipe, html: {class: 'basic-grey'} do |f| %>
       <% if flash[:notice] %>
-      <div class="alert alert-warning">
+      <div class="alert alert-warning alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
         <%= flash[:notice] %>
       </div>
       <% end %>

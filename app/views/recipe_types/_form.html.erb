@@ -3,15 +3,22 @@
 </div> 
     
 <div class="main">
-<%= form_for @recipe_type, html: {class: 'basic-grey'} do |f| %>
-  <h1>Novo Tipo de Receita</h1>
-  <div class="field">
-    <%= f.label :name, 'Nome' %>
-    <%= f.text_field :name %>
-  </div>
-  
-  <div> 
-    <%= f.submit 'Enviar', class:'button' %>
-  </div>
-<% end %>
+  <% if flash[:notice] %>
+    <div class="alert alert-warning alert-dismissable">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+        
+  <%= form_for @recipe_type, html: {class: 'basic-grey'} do |f| %>
+    <h1>Novo Tipo de Receita</h1>
+    <div class="field">
+      <%= f.label :name, 'Nome' %>
+      <%= f.text_field :name %>
+    </div>
+    
+    <div> 
+      <%= f.submit 'Enviar', class:'button' %>
+    </div>
+  <% end %>
 </div>

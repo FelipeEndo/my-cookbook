@@ -3,6 +3,14 @@
 </div>  
 
 <div class="main">
+  
+  <% if flash[:notice] %>
+   <div class="alert alert-success alert-dismissable">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+  
   <h1><%= @recipe_type.name%></h1>
   
   <% if @recipes.count > 0 %>

@@ -16,9 +16,9 @@ class RecipeTypesController < ApplicationController
     name = params[:recipe_type][:name]
     @recipe_type = RecipeType.create(name: name)
     if @recipe_type.save
-      redirect_to @recipe_type
+      redirect_to @recipe_type, notice: 'Tipo de Receita cadastrado com sucesso'
     else
-      render '_error_messages'
+      redirect_to new_recipe_type_path, notice: 'Você deve informar o nome do Tipo de Receita'
     end
   end
 end

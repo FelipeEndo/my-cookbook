@@ -16,9 +16,9 @@ class CuisinesController < ApplicationController
     name = params[:cuisine][:name]
     @cuisine = Cuisine.create(name: name)
     if @cuisine.save
-      redirect_to @cuisine
+      redirect_to @cuisine, notice: 'Cozinha cadastrada com sucesso'
     else
-      render '_error_message'
+      redirect_to new_cuisine_path, notice: 'Você deve informar o nome da Cozinha'
     end
   end
 end

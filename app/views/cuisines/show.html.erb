@@ -3,19 +3,24 @@
 </div> 
     
 <div class="main">
-
-<h1><%= @cuisine.name%></h1>
-
-<% if @recipes.count > 0 %>
-  <% @recipes.each do |recipe| %>
-    <h1><%= recipe.title%></h1>
-    <li><%= recipe.recipe_type.name%></li>
-    <li><%= recipe.cuisine.name%></li>
-    <li><%= recipe.difficulty%></li>
-    <li><%= recipe.cook_time%> minutos</li>
+  <% if flash[:notice] %>
+    <div class="alert alert-success alert-dismissable">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+      <%= flash[:notice] %>
+    </div>
   <% end %>
-<% else %>
- <p>Nenhuma receita encontrada para este tipo de cozinha</p>
-<% end %>
+  
+  <h1><%= @cuisine.name%></h1>
+  <% if @recipes.count > 0 %>
+    <% @recipes.each do |recipe| %>
+      <h1><%= recipe.title%></h1>
+      <li><%= recipe.recipe_type.name%></li>
+      <li><%= recipe.cuisine.name%></li>
+      <li><%= recipe.difficulty%></li>
+      <li><%= recipe.cook_time%> minutos</li>
+    <% end %>
+  <% else %>
+     <p>Nenhuma receita encontrada para este tipo de cozinha</p>
+  <% end %>
 </div>
 <%= link_to 'Voltar', root_path %>

@@ -38,9 +38,9 @@ class RecipesController < ApplicationController
     recipe_params = params.require(:recipe).permit(:title, :cuisine_id, :recipe_type_id, :difficulty, :cook_time, :ingredients, :method)
     @recipe = Recipe.find params[:id]
     if @recipe.update(recipe_params)
-      redirect_to @recipe
+      redirect_to @recipe, notice: 'Receita atualizada com sucesso!'
     else
-      flash[:notice]='Você deve informar todos os dados da receita'
+      redirect_to edit_recipe_path, notice: 'Você deve informar todos os dados da receita'
     end
   end
   
