@@ -18,7 +18,7 @@ class CuisinesController < ApplicationController
     if @cuisine.save
       redirect_to @cuisine, notice: 'Cozinha cadastrada com sucesso'
     else
-      redirect_to new_cuisine_path, notice: 'Você deve informar o nome da Cozinha'
+      redirect_to new_cuisine_path, notice: 'Você deve informar o nome da cozinha'
     end
   end
 end

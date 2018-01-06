@@ -18,7 +18,7 @@ class RecipeTypesController < ApplicationController
     if @recipe_type.save
       redirect_to @recipe_type, notice: 'Tipo de Receita cadastrado com sucesso'
     else
-      redirect_to new_recipe_type_path, notice: 'Você deve informar o nome do Tipo de Receita'
+      redirect_to new_recipe_type_path, notice: 'Você deve informar o nome do tipo de receita'
     end
   end
 end
