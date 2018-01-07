@@ -13,8 +13,7 @@ class RecipeTypesController < ApplicationController
   
   def create
     options_for_select
-    name = params[:recipe_type][:name]
-    @recipe_type = RecipeType.create(name: name)
+    @recipe_type = RecipeType.create(recipe_type_params)
     if @recipe_type.save
       redirect_to @recipe_type, notice: 'Tipo de Receita cadastrado com sucesso'
     else
@@ -25,8 +24,13 @@ end
 
 private
   
-    def options_for_select
-      @recipe_all = Recipe.all
-      @recipe_type_all = RecipeType.all
-      @cuisine_all = Cuisine.all
-    end
+  def options_for_select
+    @recipe_all = Recipe.all
+    @recipe_type_all = RecipeType.all
+    @cuisine_all = Cuisine.all
+  end
+  
+  def recipe_type_params
+    params.require(:recipe_type).permit(:name)
+  end
+    

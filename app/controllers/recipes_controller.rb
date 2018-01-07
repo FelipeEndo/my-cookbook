@@ -34,7 +34,6 @@ class RecipesController < ApplicationController
   
   def update
     options_for_select
-    recipe_params = params.require(:recipe).permit(:title, :cuisine_id, :recipe_type_id, :difficulty, :cook_time, :ingredients, :method)
     @recipe = Recipe.find params[:id]
     if @recipe.update(recipe_params)
       redirect_to @recipe, notice: 'Receita atualizada com sucesso!'
@@ -50,10 +49,14 @@ class RecipesController < ApplicationController
   end
 end
 
-  private
+private
   
-    def options_for_select
+  def options_for_select
     @recipe_all = Recipe.all
     @recipe_type_all = RecipeType.all
     @cuisine_all = Cuisine.all
-    end
+  end
+  
+  def recipe_params
+    params.require(:recipe).permit(:title, :cuisine_id, :recipe_type_id, :difficulty, :cook_time, :ingredients, :method)
+  end
