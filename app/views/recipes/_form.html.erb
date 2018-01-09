@@ -4,15 +4,17 @@
     
  <div class="main">
    
-    <%= form_for @recipe, html: {class: 'basic-grey'} do |f| %>
-      <% if flash[:notice] %>
-      <div class="alert alert-warning alert-dismissable">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-        <%= flash[:notice] %>
+      <% if @recipe.errors.any? %>
+      <div class="error-alert">
+          <div class="alert alert-warning alert-dismissable">
+            <p><%= flash[:alert] %></p>
+        </div>
       </div>
       <% end %>
+
+    <%= form_for @recipe, html: {class: 'basic-grey', multipart: true} do |f| %>
       
-      <% if @recipe.title.nil? %>
+      <% if @recipe.id.nil? %>
         <h1>Nova Receita</h1>
       <% else %>
         <h1>Editando <%= @recipe.title %></h1>
@@ -52,6 +54,11 @@
         <%= f.label :method, 'Como Preparar' %>
         <%= f.text_field :method %>
       </div>
+      
+      <div class="field">
+        <%= f.label :recipe_cover, 'Imagem' %>
+        <%= f.file_field :recipe_cover %>
+      </div><br>
       
       <div> 
         <%= f.submit 'Enviar', class:'button' %>

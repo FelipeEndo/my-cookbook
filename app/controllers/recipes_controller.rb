@@ -14,7 +14,6 @@ class RecipesController < ApplicationController
   
   def create
     options_for_select
-    recipe_params = params.require(:recipe).permit(:title, :cuisine_id, :recipe_type_id, :difficulty, :cook_time, :ingredients, :method)
     @recipe  = Recipe.new(recipe_params)
     
     if @recipe.save
@@ -22,7 +21,8 @@ class RecipesController < ApplicationController
       @cuisine = Cuisine.find(@recipe.cuisine_id).name
       redirect_to @recipe, notice: 'Receita Cadastrada com sucesso!'
     else
-      redirect_to new_recipe_path, notice: 'Você deve informar todos os dados da receita'
+      flash[:alert] = 'Você deve informar todos os dados da receita'
+      render 'new'
 
     end
   end
@@ -58,5 +58,5 @@ private
   end
   
   def recipe_params
-    params.require(:recipe).permit(:title, :cuisine_id, :recipe_type_id, :difficulty, :cook_time, :ingredients, :method)
+    params.require(:recipe).permit(:title, :cuisine_id, :recipe_type_id, :difficulty, :cook_time, :ingredients, :method, :recipe_cover)
   end

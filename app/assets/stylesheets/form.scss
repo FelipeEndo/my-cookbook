@@ -1,5 +1,6 @@
 .basic-grey {
-
+    margin-left:auto;
+    margin-right:auto;
     max-width: 1000px;
     background: #F7F7F7;
     padding: 25px 15px 25px 10px;
@@ -24,7 +25,7 @@
     display: block;
     margin: 0px;
 }
-.basic-grey div.field>label {
+.basic-grey label>span {
     float: left;
     width: 20%;
     text-align: right;
@@ -52,7 +53,7 @@
     padding: 5px 3px 3px 5px;
 }
 .basic-grey select {
-    background: #FFF image-url('down-arrow.png') no-repeat right;
+    background: #FFF url('down-arrow.png') no-repeat right;
     appearance:none;
     -webkit-appearance:none; 
     -moz-appearance: none;
@@ -79,13 +80,11 @@
     background: #CF7A7A
 }
 
-.basic-grey .button-back {
-    background: grey;
-    border: none;
-    padding: 10px 25px 10px 25px;
-    color: white;
-    box-shadow: 1px 1px 5px #B6B6B6;
-    border-radius: 3px;
-    text-shadow: 1px 1px 1px darkgrey;
-    cursor: pointer;
+.error-alert {
+    margin-left:auto;
+    margin-right:auto;
+    max-width: 1000px;
+    p{
+        font-size: 12px;
+    }
 }

@@ -34,6 +34,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'rails-assets-bootstrap', source: 'https://rails-assets.org'
 # gem para criptografia de senhas
 gem 'bcrypt'
+# gem para upload de imagens
+gem "paperclip", "~> 5.0.0"
+gem 'carrierwave', '~> 1.0'
+gem "mini_magick"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
