@@ -3,7 +3,6 @@
     <div class="recipe-list">
       <h1><%=link_to recipe.title, recipe%></h1>
         <ul>
-          <p><%= image_tag recipe.recipe_cover_url(:thumb) %></p>
           <li><b>Tipo:</b> <%= recipe.recipe_type.name%></li>
           <li><b>Cozinha:</b> <%=recipe.cuisine.name%></li>
           <li><b>Dificuldade:</b> <%=recipe.difficulty%></li>

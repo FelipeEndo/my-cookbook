@@ -13,8 +13,7 @@ class CuisinesController < ApplicationController
   
   def create
     options_for_select
-    name = params[:cuisine][:name]
-    @cuisine = Cuisine.create(name: name)
+    @cuisine = Cuisine.new(cuisine_params)
     if @cuisine.save
       redirect_to @cuisine, notice: 'Cozinha cadastrada com sucesso'
     else
@@ -23,10 +22,15 @@ class CuisinesController < ApplicationController
   end
 end
 
-  private
+private
   
-    def options_for_select
+  def options_for_select
       @recipe_all = Recipe.all
       @recipe_type_all = RecipeType.all
       @cuisine_all = Cuisine.all
-    end
+  end
+
+
+  def cuisine_params
+    params.require(:cuisine).permit(:name)
+  end

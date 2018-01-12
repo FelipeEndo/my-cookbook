@@ -21,7 +21,7 @@ class RecipesController < ApplicationController
       @cuisine = Cuisine.find(@recipe.cuisine_id).name
       redirect_to @recipe, notice: 'Receita Cadastrada com sucesso!'
     else
-      flash[:alert] = 'Você deve informar todos os dados da receita'
+      flash.now[:alert] = 'Você deve informar todos os dados da receita'
       render 'new'
 
     end
@@ -38,7 +38,8 @@ class RecipesController < ApplicationController
     if @recipe.update(recipe_params)
       redirect_to @recipe, notice: 'Receita atualizada com sucesso!'
     else
-      redirect_to edit_recipe_path, notice: 'Você deve informar todos os dados da receita'
+      flash.now[:alert] = 'Você deve informar todos os dados da receita'
+      render 'edit'
     end
   end
   
