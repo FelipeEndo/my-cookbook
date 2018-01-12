@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   get '/search', to: 'recipes#search'
   resources :cuisines, only: [:new, :show, :create]
-  resources :recipes, only: [:new, :show, :create, :edit, :update]
+  resources :recipes, only: [:new, :show, :create, :edit, :update, :destroy]
   resources :recipe_types, only: [:new, :show, :create]
 
 end

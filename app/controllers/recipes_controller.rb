@@ -43,6 +43,16 @@ class RecipesController < ApplicationController
     end
   end
   
+  def destroy
+    @recipe = Recipe.find params[:id]
+    if @recipe.destroy
+      redirect_to root_path
+    else
+      flash.now[:notice] = 'Esta receita não pode ser excluída'
+      render 'show'
+    end
+  end
+  
   def search
     options_for_select
     @query = params[:query]
