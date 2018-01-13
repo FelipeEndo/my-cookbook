@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
   
   def show
     id = params[:id]

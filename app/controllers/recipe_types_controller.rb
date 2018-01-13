@@ -1,5 +1,5 @@
 class RecipeTypesController < ApplicationController
-
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
   
   def show
     options_for_select
