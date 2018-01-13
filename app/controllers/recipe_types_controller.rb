@@ -1,4 +1,5 @@
 class RecipeTypesController < ApplicationController
+
   
   def show
     options_for_select

@@ -1,5 +1,5 @@
 class CuisinesController < ApplicationController
- 
+
   def new
     options_for_select
     @cuisines = Cuisine.new
