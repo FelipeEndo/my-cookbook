@@ -3,13 +3,10 @@ require 'rails_helper'
 feature 'User authenticates' do
   scenario 'Log in' do
    user = create(:user)
-   
+   login_as(user, :scope => :user)
    visit root_path
-   click_on 'Entrar'
    
-   fill_in 'Email', with: user.email
-   fill_in 'Senha', with: user.password
-   click_on 'Login'
+
    
    expect(page).to have_css('li', text: 'Minhas Receitas')
    expect(page).to have_css('li', text: 'Sair')

@@ -4,7 +4,8 @@ feature 'Visitor register recipe' do
   scenario 'successfully' do
     
     #cria os dados necessários
-    user = User.create(email: 'teste@teste.com', password: '123456')
+    user = create(:user)
+    login_as(user, :scope => :user)
     
     Cuisine.create(name: 'Arabe')
     RecipeType.create(name: 'Entrada')
@@ -13,10 +14,7 @@ feature 'Visitor register recipe' do
     # simula a ação do usuário
     visit root_path
     click_on 'Enviar uma receita'
-    
-    fill_in 'Email', with: user.email 
-    fill_in 'Senha', with: user.password
-    click_on 'Login'
+
 
     fill_in 'Título', with: 'Tabule'
     select 'Arabe', from: 'Cozinha'
@@ -42,15 +40,12 @@ feature 'Visitor register recipe' do
 
   scenario 'and must fill in all fields' do
     #cria os dados necessários, nesse caso não vamos criar dados no banco
-    user = User.create(email: 'teste@teste.com', password: '123456')
+    user = create(:user)
+    login_as(user, :scope => :user)
     Cuisine.create(name: 'Arabe')
     # simula a ação do usuário
     visit root_path
     click_on 'Enviar uma receita'
-    
-    fill_in 'Email', with: user.email 
-    fill_in 'Senha', with: user.password
-    click_on 'Login'
 
     fill_in 'Título', with: ''
     fill_in 'Dificuldade', with: ''

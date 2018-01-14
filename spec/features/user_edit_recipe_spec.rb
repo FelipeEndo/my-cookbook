@@ -7,19 +7,9 @@ feature 'User update recipe' do
     
     visit root_path
     click_on recipe.title
-    click_on 'Editar'
+    visit edit_recipe_path(recipe)
     
-    expect(page).to have_content('Login')
-    expect(page).to have_content('Senha')
-    
-    expect(page).not_to have_css('h1', text: recipe.title)
-    expect(page).not_to have_css('h3', text: 'Detalhes')
-    expect(page).not_to have_css('p', text: recipe.recipe_type.name)
-    expect(page).not_to have_css('p', text: recipe.cuisine.name)
-    expect(page).not_to have_css('p', text: recipe.difficulty)
-    expect(page).not_to have_css('p', text: recipe.cook_time.to_s+' minutos')
-    expect(page).not_to have_css('p', text: recipe.ingredients)
-    expect(page).not_to have_css('p', text: recipe.method)
+    expect(page).to have_current_path(root_path)
     
   end
         
@@ -28,17 +18,13 @@ feature 'User update recipe' do
 
     brazilian_cuisine = Cuisine.create(name: 'Brasileira')
     dessert_type = RecipeType.create(name: 'Sobremesa')
-    user = create(:user)
-    recipe = create(:recipe, user: user)
+    recipe = create(:recipe)
+    login_as(recipe.user, :scope => :user) 
 
     # simula a ação do usuário
     visit root_path
     click_on recipe.title
     click_on 'Editar'
-    
-    fill_in 'Email', with: user.email 
-    fill_in 'Senha', with: user.password
-    click_on 'Login'
 
     fill_in 'Título', with: 'Bolo de cenoura'
     select 'Brasileira', from: 'Cozinha'
@@ -62,17 +48,12 @@ feature 'User update recipe' do
 
   scenario 'and all fields must be filled' do
     #cria os dados necessários, nesse caso não vamos criar dados no banco
-    user = create(:user)
-    recipe = create(:recipe, user: user)
-
+    recipe = create(:recipe)
+    login_as(recipe.user, :scope => :user) 
     # simula a ação do usuário
     visit root_path
     click_on recipe.title
     click_on 'Editar'
-    
-    fill_in 'Email', with: user.email 
-    fill_in 'Senha', with: user.password
-    click_on 'Login'
 
     fill_in 'Título', with: ''
     fill_in 'Dificuldade', with: ''
