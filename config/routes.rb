@@ -10,6 +10,6 @@ Rails.application.routes.draw do
     end
   end
   resources :recipe_types, only: [:new, :show, :create]
-  resources :favorites, only: [:new, :create, :show] 
+  resources :favorites, only: [:create, :show, :destroy] 
 
 end

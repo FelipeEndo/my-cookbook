@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
+  helper_method :favorited?
   
   def show
     id = params[:id]
@@ -76,10 +77,15 @@ private
   end
   
   def favorited_by_user
+    user = current_user
     @favorites = Recipe.where(id: current_user.favorites.pluck(:recipe_id))
     
   end
   
   def recipe_params
     params.require(:recipe).permit(:title, :cuisine_id, :recipe_type_id, :difficulty, :cook_time, :ingredients, :method, :recipe_cover)
+  end
+  
+  def favorited?(recipe)
+    current_user.favorites.pluck(:recipe_id).include?(recipe.id)
   end

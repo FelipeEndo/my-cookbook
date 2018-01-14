@@ -57,6 +57,12 @@ feature 'User choose favorites' do
     user = create(:user)
     login_as(user, :scope => :user)
     recipe = create(:recipe)
+    
+    visit recipe_path(recipe)
+    
+    click_on 'Adicionar aos Favoritos'
+    
+    visit recipe_path(recipe)
   end
   
 end

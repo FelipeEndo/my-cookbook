@@ -10,7 +10,14 @@
      <p><%= flash[:notice] %></p> 
     </div>
   <% end %>
-  <h1><%= @recipe.title %></h1> <p><%= link_to 'Adicionar aos Favoritos', favorites_path(recipe: @recipe, user: current_user), method: :post %></p>
+  <h1><%= @recipe.title %></h1>
+  <% if user_signed_in? %>
+    <% if favorited?(@recipe)  %>
+      <p><%= link_to 'Remover dos Favoritos', favorite_path(recipe: @recipe), method: :delete %></p>
+    <% else %>
+      <p><%= link_to 'Adicionar aos Favoritos', favorites_path(recipe: @recipe, user: current_user), method: :post %></p>
+    <% end %>
+  <% end %>
   
   <p>Autor: <%= @recipe.user.email %></p>
   <h3>Detalhes</h3>
