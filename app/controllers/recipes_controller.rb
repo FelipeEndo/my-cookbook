@@ -3,6 +3,7 @@ class RecipesController < ApplicationController
   
   def show
     id = params[:id]
+    @favorite = Favorite.new
     @recipe = Recipe.find id
     @cuisine = Cuisine.find(@recipe.cuisine_id).name
     options_for_select
@@ -59,6 +60,11 @@ class RecipesController < ApplicationController
     @query = params[:query]
     @results = Recipe.where(title: @query)
   end
+  
+  def favorites
+    options_for_select
+    favorited_by_user
+  end
 end
 
 private
@@ -67,6 +73,11 @@ private
     @recipe_all = Recipe.all
     @recipe_type_all = RecipeType.all
     @cuisine_all = Cuisine.all
+  end
+  
+  def favorited_by_user
+    @favorites = Recipe.where(id: current_user.favorites.pluck(:recipe_id))
+    
   end
   
   def recipe_params

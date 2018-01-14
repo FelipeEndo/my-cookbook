@@ -10,7 +10,8 @@
      <p><%= flash[:notice] %></p> 
     </div>
   <% end %>
-  <h1><%= @recipe.title %></h1>
+  <h1><%= @recipe.title %></h1> <p><%= link_to 'Adicionar aos Favoritos', favorites_path(recipe: @recipe, user: current_user), method: :post %></p>
+  
   <p>Autor: <%= @recipe.user.email %></p>
   <h3>Detalhes</h3>
   <p><%= @recipe.recipe_type.name %></p>

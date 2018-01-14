@@ -1,0 +1,7 @@
+<% @favorites.each do |f| %>
+  <h1><%= f.title %></h1>
+  <li><%= f.recipe_type.name %></li>
+  <li><%= f.cuisine.name %></li>
+  <li><%= f.difficulty %></li>
+  <li><%= f.cook_time %> minutos</li>
+<% end %>
