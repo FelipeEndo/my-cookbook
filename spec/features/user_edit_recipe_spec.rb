@@ -2,15 +2,9 @@ require 'rails_helper'
 
 feature 'User update recipe' do
   scenario 'Authentication needed' do
-        arabian_cuisine = Cuisine.create(name: 'Arabe')
-        main_type = RecipeType.create(name: 'Prato Principal')
         
-        recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: main_type,
-                          cuisine: arabian_cuisine, difficulty: 'Médio',
-                          cook_time: 50,
-                          ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
-   
+    recipe = create(:recipe)
+    
     visit root_path
     click_on recipe.title
     click_on 'Editar'
@@ -23,7 +17,7 @@ feature 'User update recipe' do
     expect(page).not_to have_css('p', text: recipe.recipe_type.name)
     expect(page).not_to have_css('p', text: recipe.cuisine.name)
     expect(page).not_to have_css('p', text: recipe.difficulty)
-    expect(page).not_to have_css('p', text: '50 minutos')
+    expect(page).not_to have_css('p', text: recipe.cook_time.to_s+' minutos')
     expect(page).not_to have_css('p', text: recipe.ingredients)
     expect(page).not_to have_css('p', text: recipe.method)
     
@@ -31,20 +25,11 @@ feature 'User update recipe' do
         
   scenario 'successfully' do
     #cria os dados necessários
-    user = User.create(email: 'teste@teste.com', password: '123456')
-    
-    arabian_cuisine = Cuisine.create(name: 'Arabe')
+
     brazilian_cuisine = Cuisine.create(name: 'Brasileira')
-
-    appetizer_type = RecipeType.create(name: 'Entrada')
-    main_type = RecipeType.create(name: 'Prato Principal')
     dessert_type = RecipeType.create(name: 'Sobremesa')
-
-    recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: main_type,
-                          cuisine: arabian_cuisine, difficulty: 'Médio',
-                          cook_time: 50,
-                          ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+    user = create(:user)
+    recipe = create(:recipe, user: user)
 
     # simula a ação do usuário
     visit root_path
@@ -77,20 +62,8 @@ feature 'User update recipe' do
 
   scenario 'and all fields must be filled' do
     #cria os dados necessários, nesse caso não vamos criar dados no banco
-    user = User.create(email: 'teste@teste.com', password: '123456')
-    
-    arabian_cuisine = Cuisine.create(name: 'Arabe')
-    brazilian_cuisine = Cuisine.create(name: 'Brasileira')
-
-    appetizer_type = RecipeType.create(name: 'Entrada')
-    main_type = RecipeType.create(name: 'Prato Principal')
-    dessert_type = RecipeType.create(name: 'Sobremesa')
-
-    recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: main_type,
-                          cuisine: arabian_cuisine, difficulty: 'Médio',
-                          cook_time: 50,
-                          ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+    user = create(:user)
+    recipe = create(:recipe, user: user)
 
     # simula a ação do usuário
     visit root_path

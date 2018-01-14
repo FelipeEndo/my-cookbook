@@ -16,9 +16,9 @@ class RecipesController < ApplicationController
   def create
     options_for_select
     @recipe  = Recipe.new(recipe_params)
+    @recipe.user = current_user
     
     if @recipe.save
-      #@recipe = Recipe.find_by title: params[:recipe][:title]
       @cuisine = Cuisine.find(@recipe.cuisine_id).name
       redirect_to @recipe, notice: 'Receita Cadastrada com sucesso!'
     else

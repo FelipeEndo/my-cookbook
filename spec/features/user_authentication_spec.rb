@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User authenticates' do
   scenario 'Log in' do
-   user = User.create(email: 'teste@teste.com', password: '123456')
+   user = create(:user)
    
    visit root_path
    click_on 'Entrar'
