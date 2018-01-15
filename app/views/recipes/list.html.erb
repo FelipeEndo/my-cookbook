@@ -1,5 +1,9 @@
+  <div id="menu">
+    <%= render 'layouts/navbar' %>
+  </div>
+  
 <div class='basic-grey'>
-  <h1>Listagem de Receitas</h1>
+  <h1>Todas as Receitas</h1>
   
   <% @recipe_all.each do |recipe| %>
     <h3><%= link_to recipe.title, recipe_path(recipe) %></h3>

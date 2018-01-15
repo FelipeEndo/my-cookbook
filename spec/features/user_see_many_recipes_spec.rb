@@ -58,7 +58,7 @@ feature 'User see recipes' do
     visit root_path
     click_on 'Todas as Receitas'
     
-    expect(page).to have_css('h1', text: 'Listagem de Receitas')
+    expect(page).to have_css('h1', text: 'Todas as Receitas')
     
     expect(page).to have_css('h3', text:  recipe1.title)
     expect(page).to have_css('li', text: 'Cozinha: '+recipe1.cuisine.name)
