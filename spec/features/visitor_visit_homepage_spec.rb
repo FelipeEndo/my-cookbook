@@ -22,7 +22,7 @@ feature 'Visitor visit homepage' do
     visit root_path
 
     # expectativas do usuário após a ação
-    expect(page).to have_css('h1', text: recipe.title)
+    expect(page).to have_css('h3', text: recipe.title)
     expect(page).to have_css('li', text: recipe.recipe_type.name)
     expect(page).to have_css('li', text: recipe.cuisine.name)
     expect(page).to have_css('li', text: recipe.difficulty)
@@ -50,13 +50,13 @@ feature 'Visitor visit homepage' do
     visit root_path
 
     # expectativas do usuário após a ação
-    expect(page).to have_css('h1', text: recipe.title)
+    expect(page).to have_css('h3', text: recipe.title)
     expect(page).to have_css('li', text: recipe.recipe_type.name)
     expect(page).to have_css('li', text: recipe.cuisine.name)
     expect(page).to have_css('li', text: recipe.difficulty)
     expect(page).to have_css('li', text: "#{recipe.cook_time} minutos")
 
-    expect(page).to have_css('h1', text: another_recipe.title)
+    expect(page).to have_css('h3', text: another_recipe.title)
     expect(page).to have_css('li', text: another_recipe.recipe_type.name)
     expect(page).to have_css('li', text: another_recipe.cuisine.name)
     expect(page).to have_css('li', text: another_recipe.difficulty)

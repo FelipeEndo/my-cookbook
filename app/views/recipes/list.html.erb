@@ -1,0 +1,11 @@
+<div class='basic-grey'>
+  <h1>Listagem de Receitas</h1>
+  
+  <% @recipe_all.each do |recipe| %>
+    <h3><%= link_to recipe.title, recipe_path(recipe) %></h3>
+    <li><strong>Cozinha:</strong> <%= recipe.cuisine.name %></li>
+    <li><strong>Tipo:</strong> <%= recipe.recipe_type.name %></li>
+    <li><strong>Dificuldade:</strong> <%= recipe.difficulty %></li>
+  <% end %>
+  
+</div>

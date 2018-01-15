@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :cuisine do
-    name 'Japonesa'
+    name {Faker::Name.cuisine}
   end
 end

@@ -219,3 +219,9 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: ''
+  faker:
+    name:
+      cuisine: [Italiana, Japonesa, Chinesa, Tailandesa, Francesa, Mexicana, Indiana]
+      recipe_type: [Entrada, Prato Principal, Lanche, Café da Manhã, Chá da Tarde, Ceia]
+      difficulty: [Fácil, Médio, Difícil]
+      

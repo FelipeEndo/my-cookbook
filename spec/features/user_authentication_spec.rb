@@ -8,7 +8,6 @@ feature 'User authenticates' do
    
 
    
-   expect(page).to have_css('li', text: 'Minhas Receitas')
    expect(page).to have_css('li', text: 'Sair')
    expect(page).to have_css('li', text: 'Olá, '+user.email)
    

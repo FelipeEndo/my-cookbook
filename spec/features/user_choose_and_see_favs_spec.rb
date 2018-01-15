@@ -4,7 +4,7 @@ feature 'User choose favorites' do
   scenario 'by link in the page' do
     user = create(:user)
     login_as(user, :scope => :user)
-    recipe = create(:recipe)
+    recipe = create(:recipe, cuisine: create(:cuisine, name: 'Japonesa'), recipe_type: create(:recipe_type, name: 'Entrada'), title:'Bolo de Cenoura', difficulty: 'Fácil', cook_time: 105)
     another_recipe = create(:recipe, cuisine: create(:cuisine, name: 'Italiana'), recipe_type: create(:recipe_type, name: 'Sobremesa'), title:'Bananada', difficulty: 'Dificil', cook_time: 95)
     dif_another_recipe = create(:recipe, cuisine: create(:cuisine, name: 'Mexicana'),  recipe_type: create(:recipe_type, name: 'Prato Principal'), title:'Lasanha', difficulty: 'Médio', cook_time: 35)
     

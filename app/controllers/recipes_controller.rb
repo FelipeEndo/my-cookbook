@@ -66,7 +66,13 @@ class RecipesController < ApplicationController
     options_for_select
     favorited_by_user
   end
+  
+  def list
+    options_for_select
+  end
 end
+
+
 
 private
   

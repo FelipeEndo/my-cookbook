@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :recipe_type do
-    name 'Petisco'
-  end
+    name {Faker::Name.recipe_type}
+    end
 end

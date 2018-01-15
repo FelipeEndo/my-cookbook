@@ -1,7 +1,8 @@
+<div class="basic-grey">
 <h2>Últimas Receitas</h2>
-    <% @recipe_all.each do |recipe| %>
+    <% @recipe_all.last(6).reverse_each do |recipe| %>
     <div class="recipe-list">
-      <h1><%=link_to recipe.title, recipe%></h1>
+      <h3><%=link_to recipe.title, recipe%></h3>
         <ul>
           <li><b>Tipo:</b> <%= recipe.recipe_type.name%></li>
           <li><b>Cozinha:</b> <%=recipe.cuisine.name%></li>
@@ -10,3 +11,4 @@
         </ul>
     <% end %>
     </div>
+</div>

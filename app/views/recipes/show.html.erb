@@ -10,7 +10,9 @@
      <p><%= flash[:notice] %></p> 
     </div>
   <% end %>
+  
   <h1><%= @recipe.title %></h1>
+  
   <% if user_signed_in? %>
     <% if favorited?(@recipe)  %>
       <p><%= link_to 'Remover dos Favoritos', favorite_path(recipe: @recipe), method: :delete %></p>
