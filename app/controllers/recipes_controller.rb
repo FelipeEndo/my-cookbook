@@ -83,13 +83,11 @@ private
   end
   
   def favorited_by_user
-    user = current_user
     @favorites = Recipe.where(id: current_user.favorites.pluck(:recipe_id))
-    
   end
   
   def recipe_params
-    params.require(:recipe).permit(:title, :cuisine_id, :recipe_type_id, :difficulty, :cook_time, :ingredients, :method, :recipe_cover)
+    params.require(:recipe).permit(:title, :cuisine_id, :recipe_type_id, :difficulty, :cook_time, :ingredients, :method, :recipe_cover, :remote_recipe_cover_url)
   end
   
   def favorited?(recipe)

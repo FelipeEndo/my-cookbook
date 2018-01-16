@@ -55,7 +55,17 @@
         <%= f.text_field :method %>
       </div>
       
+      <div>
+        <%= f.label :recipe_cover, 'Foto da Receita: ' %>
+        <%= f.file_field :recipe_cover %>  
+      </div>
+       <br>     
+      <div>
+        <%= f.label :remote_recipe_cover_url, 'Ou URL da imagem: ' %>
+        <%= f.text_field :remote_recipe_cover_url %>  
+      </div>
       
+
       <div> 
         <%= f.submit 'Enviar', class:'button' %>
       </div>

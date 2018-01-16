@@ -11,6 +11,7 @@
     </div>
   <% end %>
   
+  <%= image_tag @recipe.recipe_cover_url(:thumb).to_s%>
   <h1><%= @recipe.title %></h1>
   
   <% if user_signed_in? %>
