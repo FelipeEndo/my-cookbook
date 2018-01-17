@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :favorites_recipes, through: :favorites, source: :recipes
   
   def favorited?(recipe)
-   Favorite.find_by(user: self, recipe: recipe)
+   favorites_recipes.include?(recipe)
   end
+  
 end
