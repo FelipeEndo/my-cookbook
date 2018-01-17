@@ -1,0 +1,13 @@
+<div id="menu">
+  <%= render 'layouts/navbar' %>
+</div> 
+
+<div class="main">
+    <% if flash[:notice] %>
+    <div class="alert alert-success alert-dismissable">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+     <p><%= flash[:notice] %></p> 
+    </div>
+  <% end %>
+  <%= render 'recipes/partials/favoriteds_list' %>
+</div>

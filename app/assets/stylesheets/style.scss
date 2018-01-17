@@ -48,3 +48,10 @@
 .hidden {
   display: none;
 }
+
+a.favorite {
+ background: url('favorites-image.jpg') no-repeat;
+ display: inline-block;
+ height: 51px;
+ width: 92px;
+}

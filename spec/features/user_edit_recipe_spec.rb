@@ -1,16 +1,27 @@
 require 'rails_helper'
 
 feature 'User update recipe' do
-  scenario 'Authentication needed' do
-        
-    recipe = create(:recipe)
+  scenario 'Button Edit only apears for the owners recipe' do
+    user = create(:user, email: 'strange@gmail.com')
+    recipe = create(:recipe, user: create(:user, email: 'owner@gmail.com'))
     
-    visit root_path
-    click_on recipe.title
+    login_as(user, :scope => :user)
+    
+    
+    visit recipe_path(recipe)
+    
+    expect(page).not_to have_link('Editar')
+  
+  end
+  scenario 'page asks for login of not the owner' do
+    #cria os dados necessários
+    user = create(:user, email: 'strange@gmail.com')
+    recipe = create(:recipe, user: create(:user, email: 'owner@gmail.com'))
+    login_as(user, :scope => :user)
     visit edit_recipe_path(recipe)
     
-    expect(page).to have_current_path(root_path)
-    
+    expect(current_path).to eq root_path
+    expect(page).to have_content('Você não tem permissão para isso!')
   end
         
   scenario 'successfully' do
@@ -27,8 +38,8 @@ feature 'User update recipe' do
     click_on 'Editar'
 
     fill_in 'Título', with: 'Bolo de cenoura'
-    select 'Brasileira', from: 'Cozinha'
-    select 'Sobremesa', from: 'Tipo da Receita'
+    select brazilian_cuisine.name, from: 'Cozinha'
+    select dessert_type.name, from: 'Tipo da Receita'
     fill_in 'Dificuldade', with: 'Médio'
     fill_in 'Tempo de Preparo', with: '45'
     fill_in 'Ingredientes', with: 'Cenoura, farinha, ovo, oleo de soja e chocolate'

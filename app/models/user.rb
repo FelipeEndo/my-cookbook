@@ -5,5 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
          
   has_many :favorites
-  has_many :recipes, through: :favorites
+  has_many :recipes
+  has_many :favorites_recipes, through: :favorites, source: :recipes
+  
+  def favorited?(recipe)
+   Favorite.find_by(user: self, recipe: recipe)
+  end
 end

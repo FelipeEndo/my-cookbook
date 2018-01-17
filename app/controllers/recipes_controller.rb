@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :destroy, :update]
   helper_method :favorited?
   
   def show
@@ -32,17 +32,27 @@ class RecipesController < ApplicationController
   
   def edit
     @recipe = Recipe.find params[:id]
-    options_for_select
+    
+    if @recipe.user_owner?(current_user)
+      options_for_select
+    else
+       redirect_to root_path, notice: 'Você não tem permissão para isso!'
+    end
   end
   
   def update
     options_for_select
     @recipe = Recipe.find params[:id]
-    if @recipe.update(recipe_params)
-      redirect_to @recipe, notice: 'Receita atualizada com sucesso!'
+    
+    if @recipe.user_owner?(current_user)
+      if @recipe.update(recipe_params)
+        redirect_to @recipe, notice: 'Receita atualizada com sucesso!'
+      else
+        flash.now[:alert] = 'Você deve informar todos os dados da receita'
+        render 'edit'
+      end
     else
-      flash.now[:alert] = 'Você deve informar todos os dados da receita'
-      render 'edit'
+      redirect_to root_path, notice: 'Você não tem permissão para isso!'
     end
   end
   
@@ -59,10 +69,10 @@ class RecipesController < ApplicationController
   def search
     options_for_select
     @query = params[:query]
-    @results = Recipe.where(title: @query)
+    @results = Recipe.where('title LIKE ? OR ingredients LIKE ?', @query, @query)
   end
   
-  def favorites
+  def my_favorites
     options_for_select
     favorited_by_user
   end
@@ -70,9 +80,26 @@ class RecipesController < ApplicationController
   def list
     options_for_select
   end
+  
+  def favorite
+    user = params[:user]
+    recipe = params[:recipe]
+    @favorite = User.find(user).favorites.new(recipe_id: recipe)
+    if @favorite.save
+      redirect_to recipe_path(recipe), :notice => 'Receita adicionada aos favoritos!'
+    end
+  end
+  
+  def destroy_favorite
+      recipe = params[:recipe]
+      @favorite = Favorite.find_by(user_id: current_user, recipe_id: params[:id])
+      if @favorite.destroy
+        redirect_to recipe_path(recipe), :notice => 'Receita removida dos favoritos.'
+      else
+        redirect_to recipe_path(recipe), :notice => 'Receita não pode ser removida dos favoritos'
+      end
+  end
 end
-
-
 
 private
   
@@ -83,13 +110,10 @@ private
   end
   
   def favorited_by_user
-    @favorites = Recipe.where(id: current_user.favorites.pluck(:recipe_id))
+    @favorites = Favorite.where(user: current_user)
   end
   
   def recipe_params
     params.require(:recipe).permit(:title, :cuisine_id, :recipe_type_id, :difficulty, :cook_time, :ingredients, :method, :recipe_cover, :remote_recipe_cover_url)
   end
-  
-  def favorited?(recipe)
-    current_user.favorites.pluck(:recipe_id).include?(recipe.id)
-  end
+

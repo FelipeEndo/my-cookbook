@@ -3,13 +3,18 @@
 </div> 
     
 <div class="main">  
-   <h1>Resultado da busca por: <%=@query%></h1>
-   <% @results.each do |result| %>
-      <h1><%= link_to result.title, recipe_path(result.id) %></h1>
-      <li><%= result.recipe_type.name%></li>
-      <li><%= result.cuisine.name%></li>
-      <li><%= result.difficulty%></li>
-      <li><%= result.cook_time%> minutos</li>
+   <h1><%="Resultado da busca por: #{@query}"%></h1>
+   <% if @results.empty? %>
+      <h2><%= "Nenhum resultado para: #{@query}" %></h2>
+      
+   <% else %>
+      <% @results.each do |result| %>
+         <h1><%= link_to result.title, recipe_path(result.id) %></h1>
+         <li><%= result.recipe_type.name%></li>
+         <li><%= result.cuisine.name%></li>
+         <li><%= result.difficulty%></li>
+         <li><%= result.cook_time%> minutos</li>
+      <% end %>
    <% end %>
 </div>
    

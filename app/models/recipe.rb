@@ -6,4 +6,8 @@ class Recipe < ApplicationRecord
   validates :title, :recipe_type, :difficulty, :cook_time, :ingredients, :method, :cuisine, presence: true
   has_many :favorites
   mount_uploader :recipe_cover, RecipeCoverUploader
+  
+  def user_owner?(user)
+    self.user == user
+  end
 end

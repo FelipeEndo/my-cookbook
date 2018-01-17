@@ -2,9 +2,8 @@
     <%= render 'layouts/navbar' %>
 </div> 
     
-<div class="main">  
-
-  <% if flash[:notice] %>
+<div class="main">
+    <% if flash[:notice] %>
     <div class="alert alert-success alert-dismissable">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
      <p><%= flash[:notice] %></p> 
@@ -15,10 +14,10 @@
   <h1><%= @recipe.title %></h1>
   
   <% if user_signed_in? %>
-    <% if favorited?(@recipe)  %>
-      <p><%= link_to 'Remover dos Favoritos', favorite_path(recipe: @recipe), method: :delete %></p>
+    <% if current_user.favorited?(@recipe)  %>
+      <p><%= link_to 'Remover dos Favoritos', destroy_favorite_recipe_path(recipe: @recipe), method: :delete %></p>
     <% else %>
-      <p><%= link_to 'Adicionar aos Favoritos', favorites_path(recipe: @recipe, user: current_user), method: :post %></p>
+      <p><%= link_to 'Adicionar aos Favoritos', favorite_recipe_path(recipe: @recipe, user: current_user), method: :post %></p>
     <% end %>
   <% end %>
   
