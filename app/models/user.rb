@@ -6,10 +6,10 @@ class User < ApplicationRecord
          
   has_many :favorites
   has_many :recipes
-  has_many :favorites_recipes, through: :favorites, source: :recipes
+  has_many :favorite_recipes, through: :favorites, source: :recipe
   
   def favorited?(recipe)
-   favorites_recipes.include?(recipe)
+   favorite_recipes.include?(recipe)
   end
   
 end
