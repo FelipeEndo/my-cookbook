@@ -31,9 +31,27 @@
   <p><%= @recipe.ingredients %></p>
   <h3>Como Preparar</h3>
   <p><%= @recipe.method %></p>
-  <% if user_signed_in? && current_user.email == @recipe.user.email %>
+  
+  <% if user_signed_in? && @recipe.user_owner?(current_user) %>
   <%= link_to 'Editar', edit_recipe_path %>
   <%= link_to 'Excluir', @recipe, method: :delete, data: { confirm: 'Tem certeza que deseja exclur esta receita?' }%>
   <% end %>
   <%= link_to 'Voltar', root_path %>
+  
+  <h3>Enviar esta receita para um amigo!</h3>
+  <%= form_tag(share_recipe_path, method: :post) do %>
+    <div>
+    <%= label_tag :name, 'Seu nome'%>
+    <%= text_field_tag :name %>
+  </div>
+  <div>
+    <%= label_tag :email, 'Email'%>
+    <%= text_field_tag :email %>
+  </div>
+  <div>
+    <%= label_tag :message, 'Mensagem' %>
+    <%= text_area_tag :message %>
+  </div>
+  <%= submit_tag 'Enviar' %>
+  <% end %>
 </div>

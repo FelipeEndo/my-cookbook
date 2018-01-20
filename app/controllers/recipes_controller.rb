@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy, :update]
+  before_action :set_recipe, only: [:show, :edit, :update, :favorite, :unfavorite, :share]
   helper_method :favorited?
   
   def show
@@ -99,6 +100,17 @@ class RecipesController < ApplicationController
         redirect_to recipe_path(recipe), :notice => 'Receita não pode ser removida dos favoritos'
       end
   end
+  
+  def share
+    email = params[:email]
+    msg = params[:message]
+
+    UserMailer.recommend_email(email, msg,
+                        @recipe.id).deliver_now
+
+    flash[:notice] = "Receita enviada para #{email}"
+    redirect_to @recipe
+  end
 end
 
 private
@@ -116,4 +128,9 @@ private
   def recipe_params
     params.require(:recipe).permit(:title, :cuisine_id, :recipe_type_id, :difficulty, :cook_time, :ingredients, :method, :recipe_cover, :remote_recipe_cover_url)
   end
+  
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
+
 
