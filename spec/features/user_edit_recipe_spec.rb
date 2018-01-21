@@ -27,7 +27,7 @@ feature 'User update recipe' do
   scenario 'successfully' do
     #cria os dados necessários
 
-    brazilian_cuisine = Cuisine.create(name: 'Brasileira')
+    brazilian_cuisine = Cuisine.create(name: 'Paulista')
     dessert_type = RecipeType.create(name: 'Sobremesa')
     recipe = create(:recipe)
     login_as(recipe.user, :scope => :user) 
@@ -50,7 +50,7 @@ feature 'User update recipe' do
     expect(page).to have_css('h1', text: 'Bolo de cenoura')
     expect(page).to have_css('h3', text: 'Detalhes')
     expect(page).to have_css('p', text: 'Sobremesa')
-    expect(page).to have_css('p', text: 'Brasileira')
+    expect(page).to have_css('p', text: brazilian_cuisine.name)
     expect(page).to have_css('p', text: 'Médio')
     expect(page).to have_css('p', text: '45 minutos')
     expect(page).to have_css('p', text:  'Cenoura, farinha, ovo, oleo de soja e chocolate')

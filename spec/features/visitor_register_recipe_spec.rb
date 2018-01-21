@@ -23,6 +23,7 @@ feature 'Visitor register recipe' do
     fill_in 'Tempo de Preparo', with: '45'
     fill_in 'Ingredientes', with: 'Trigo para quibe, cebola, tomate picado, azeite, salsinha'
     fill_in 'Como Preparar', with: 'Misturar tudo e servir. Adicione limão a gosto.'
+    attach_file('Foto da Receita', "#{Rails.root}/app/assets/images/recipe-cover.jpg")
     click_on 'Enviar'
 
 
@@ -36,6 +37,7 @@ feature 'Visitor register recipe' do
     expect(page).to have_css('p', text: 'Trigo para quibe, cebola, tomate picado, azeite, salsinha')
     expect(page).to have_css('h3', text: 'Como Preparar')
     expect(page).to have_css('p', text:  'Misturar tudo e servir. Adicione limão a gosto.')
+    expect(page).to have_css("img[src*='recipe-cover.jpg']")
   end
 
   scenario 'and must fill in all fields' do
@@ -56,5 +58,13 @@ feature 'Visitor register recipe' do
 
 
     expect(page).to have_content('Você deve informar todos os dados da receita')
+  end
+  
+  scenario 'and dont upload the cover' do
+    recipe = create(:recipe)
+    
+    visit recipe_path(recipe)
+    
+    expect(page).to have_css("img[src*='sem-foto.gif']")
   end
 end

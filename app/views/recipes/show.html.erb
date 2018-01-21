@@ -10,7 +10,7 @@
     </div>
   <% end %>
   
-  <%= image_tag @recipe.recipe_cover_url(:thumb).to_s%>
+  <%= image_tag @recipe.recipe_cover.url(:thumb) %>
   <h1><%= @recipe.title %></h1>
   
   <% if user_signed_in? %>
