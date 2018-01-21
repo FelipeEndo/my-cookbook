@@ -81,7 +81,7 @@ Favorite.create(user: user3, recipe: recipe4)
 
 Favorite.create(user: user4, recipe: recipe1)
 Favorite.create(user: user4, recipe: recipe4)
-Favorite.create(user: user4, recipe: recipe5)
+Favorite.create(user: user4, recipe: recipe4)
 
 Favorite.create(user: user5, recipe: recipe1)
 Favorite.create(user: user5, recipe: recipe4)

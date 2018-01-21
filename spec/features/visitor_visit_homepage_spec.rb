@@ -8,7 +8,7 @@ feature 'Visitor visit homepage' do
     expect(page).to have_css('p', text: 'Bem-vindo ao maior livro de receitas online')
   end
 
-  scenario 'and view recipe' do
+  scenario 'and view the last recipes' do
     #cria os dados necessários
     recipe = create(:recipe)
 
@@ -42,5 +42,39 @@ feature 'Visitor visit homepage' do
     expect(page).not_to have_css('li', text: "Cozinha: #{recipe.cuisine.name}")
     expect(page).not_to have_css('li', text: "Tipo: #{recipe.recipe_type.name}")
     end  
+  end
+  
+  scenario 'and see the top 3 favorites' do 
+    Faker::UniqueGenerator.clear
+    recipes = create_list(:recipe, 10)
+    Favorite.create(user: recipes[0].user, recipe: recipes[0])
+    Favorite.create(user: recipes[1].user, recipe: recipes[0])
+    Favorite.create(user: recipes[2].user, recipe: recipes[0])
+    
+    Favorite.create(user: recipes[3].user, recipe: recipes[1])
+    Favorite.create(user: recipes[4].user, recipe: recipes[1])
+    
+    Favorite.create(user: recipes[5].user, recipe: recipes[5])
+    Favorite.create(user: recipes[6].user, recipe: recipes[5])
+    
+    Favorite.create(user: recipes[7].user, recipe: recipes[3])
+    Favorite.create(user: recipes[8].user, recipe: recipes[4])
+    Favorite.create(user: recipes[9].user, recipe: recipes[2])
+    
+    visit root_path
+    
+    recipes.values_at(0, 1, 5).each do |recipe|
+    expect(page).to have_css('div.most_favorited', text:  recipe.title)
+    expect(page).to have_css('div.most_favorited', text: "Cozinha: #{recipe.cuisine.name}")
+    expect(page).to have_css('div.most_favorited', text: "Tipo: #{recipe.recipe_type.name}")
+    expect(page).to have_css('div.most_favorited', text: "Dificuldade: #{recipe.difficulty}")
+    end
+    
+    recipes.values_at(2, 3, 4, 6, 7, 8, 9).each do |recipe|
+    expect(page).not_to have_css('div.most_favorited', text:  recipe.title)
+    expect(page).not_to have_css('div.most_favorited', text: "Cozinha: #{recipe.cuisine.name}")
+    expect(page).not_to have_css('div.most_favorited', text: "Tipo: #{recipe.recipe_type.name}")
+    end  
+    
   end
 end

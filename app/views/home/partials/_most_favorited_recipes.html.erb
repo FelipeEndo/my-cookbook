@@ -1,5 +1,8 @@
+<div class="basic-grey">
 <h2>Favoritas por Usuários</h2>
-    <% @recipe_all.each do |recipe| %>
+    <% @most_favorited.each do |recipe| %>
+     <div class="most_favorited">
+      <%= image_tag recipe.recipe_cover.url(:thumb) %>
       <h3><%=link_to recipe.title, recipe%></h3>
         <ul>
           <li><b>Tipo:</b> <%= recipe.recipe_type.name%></li>
@@ -8,3 +11,5 @@
           <li><b>Tempo:</b> <%=recipe.cook_time %> minutos</li>
         </ul>
     <% end %>
+    </div>
+</div>
