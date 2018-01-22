@@ -90,7 +90,8 @@ feature 'Visitor register recipe' do
     check('Destaque')
     click_on 'Enviar'
     
+    expect(page).to have_css("img[src*='star']")
     
-    expect(page).to have_css('div.title',"img[src*='star.png']")
+    
   end
 end

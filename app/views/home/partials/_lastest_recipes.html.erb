@@ -1,15 +1,17 @@
 <div class="basic-grey">
-<h2>Últimas Receitas</h2>
-    <% @recipe_all.last(6).reverse_each do |recipe| %>
+  <h2>Últimas Receitas</h2>
+  <% @recipe_all.last(6).reverse_each do |recipe| %>
     <div class="recipe-list">
       <%= image_tag recipe.recipe_cover.url(:thumb) %>
-      <h3><%=link_to recipe.title, recipe%></h3>
-        <ul>
-          <li><b>Tipo:</b> <%= recipe.recipe_type.name%></li>
-          <li><b>Cozinha:</b> <%=recipe.cuisine.name%></li>
-          <li><b>Dificuldade:</b> <%=recipe.difficulty%></li>
-          <li><b>Tempo:</b> <%=recipe.cook_time %> minutos</li>
-        </ul>
-    <% end %>
+      <div class='title'>
+        <h3><%=link_to recipe.title, recipe%> <%= image_tag 'star.png' if recipe.featured %> </h3>
+      </div>
+      <ul>
+        <li><b>Tipo:</b> <%= recipe.recipe_type.name%></li>
+        <li><b>Cozinha:</b> <%=recipe.cuisine.name%></li>
+        <li><b>Dificuldade:</b> <%=recipe.difficulty%></li>
+        <li><b>Tempo:</b> <%=recipe.cook_time %> minutos</li>
+      </ul>
     </div>
+  <% end %>
 </div>

@@ -1,15 +1,17 @@
 <div class="basic-grey">
 <h2>Favoritas por Usuários</h2>
-    <% @most_favorited.each do |recipe| %>
-     <div class="most_favorited">
+  <% @most_favorited.each do |recipe| %>
+    <div class="most_favorited">
       <%= image_tag recipe.recipe_cover.url(:thumb) %>
-      <h3><%=link_to recipe.title, recipe%></h3>
-        <ul>
-          <li><b>Tipo:</b> <%= recipe.recipe_type.name%></li>
-          <li><b>Cozinha:</b> <%=recipe.cuisine.name%></li>
-          <li><b>Dificuldade:</b> <%=recipe.difficulty%></li>
-          <li><b>Tempo:</b> <%=recipe.cook_time %> minutos</li>
-        </ul>
-    <% end %>
+      <div class='title'>
+        <h3><%=link_to recipe.title, recipe%> <%= image_tag 'star.png' if recipe.featured %> </h3>
+      </div>
+      <ul>
+        <li><b>Tipo:</b> <%= recipe.recipe_type.name%></li>
+        <li><b>Cozinha:</b> <%=recipe.cuisine.name%></li>
+        <li><b>Dificuldade:</b> <%=recipe.difficulty%></li>
+        <li><b>Tempo:</b> <%=recipe.cook_time %> minutos</li>
+      </ul>
     </div>
+  <% end %>
 </div>

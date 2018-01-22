@@ -75,6 +75,23 @@ feature 'Visitor visit homepage' do
     expect(page).not_to have_css('div.most_favorited', text: "Cozinha: #{recipe.cuisine.name}")
     expect(page).not_to have_css('div.most_favorited', text: "Tipo: #{recipe.recipe_type.name}")
     end  
+  end
+  
+  scenario 'and see featured recipes if any' do
+    Faker::UniqueGenerator.clear
+    create(:recipe, featured: true)
+    create(:recipe)
     
+    visit root_path
+    expect(page).to have_css("img[src*='star']")
+  end
+  
+    scenario 'and dont see featured recipes if has no featured' do
+    Faker::UniqueGenerator.clear
+    create(:recipe)
+    create(:recipe)
+    
+    visit root_path
+    expect(page).not_to have_css("img[src*='star']")
   end
 end

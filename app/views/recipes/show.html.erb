@@ -11,9 +11,7 @@
   <% end %>
   
   <%= image_tag @recipe.recipe_cover.url(:thumb) %>
-  <div class='title'>
   <h1><%= @recipe.title %> <%= image_tag 'star.png' if @recipe.featured %> </h1>
-  </div>
   <% if user_signed_in? %>
     <% if current_user.favorited?(@recipe)  %>
       <p><%= link_to 'Remover dos Favoritos', destroy_favorite_recipe_path(recipe: @recipe), method: :delete %></p>
