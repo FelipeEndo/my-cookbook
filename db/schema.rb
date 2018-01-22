@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180120223422) do
+ActiveRecord::Schema.define(version: 20180122000033) do
 
   create_table "cuisines", force: :cascade do |t|
     t.string "name"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20180120223422) do
     t.string "recipe_cover_content_type"
     t.integer "recipe_cover_file_size"
     t.datetime "recipe_cover_updated_at"
+    t.boolean "featured"
     t.index ["cuisine_id"], name: "index_recipes_on_cuisine_id"
     t.index ["recipe_type_id"], name: "index_recipes_on_recipe_type_id"
     t.index ["user_id"], name: "index_recipes_on_user_id"

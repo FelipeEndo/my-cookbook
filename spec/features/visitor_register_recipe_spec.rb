@@ -67,4 +67,30 @@ feature 'Visitor register recipe' do
     
     expect(page).to have_css("img[src*='sem-foto.gif']")
   end
+  
+  scenario 'and set up as featured' do
+    user = create(:user)
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    
+    login_as(user, :scope => :user)
+
+    visit root_path
+    click_on 'Enviar uma receita'
+
+
+    fill_in 'Título', with: 'Tabule'
+    select cuisine.name, from: 'Cozinha'
+    select recipe_type.name, from: 'Tipo da Receita'
+    fill_in 'Dificuldade', with: 'Fácil'
+    fill_in 'Tempo de Preparo', with: '45'
+    fill_in 'Ingredientes', with: 'Trigo para quibe, cebola, tomate picado, azeite, salsinha'
+    fill_in 'Como Preparar', with: 'Misturar tudo e servir. Adicione limão a gosto.'
+    attach_file('Foto da Receita', "#{Rails.root}/app/assets/images/recipe-cover.jpg")
+    check('Destaque')
+    click_on 'Enviar'
+    
+    
+    expect(page).to have_css('div.title',"img[src*='star.png']")
+  end
 end

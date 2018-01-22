@@ -20,6 +20,11 @@
         <h1>Editando <%= @recipe.title %></h1>
       <% end %> 
       
+      <div class="check_box">
+        <%= f.label :featured, 'Destaque' %>
+        <%= f.check_box :featured %>
+      </div>
+      
       <div class="field">
         <%= f.label :title, 'Título' %>
         <%= f.text_field :title %>
