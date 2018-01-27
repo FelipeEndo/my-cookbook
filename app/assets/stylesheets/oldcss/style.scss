@@ -29,10 +29,12 @@
 }
 
 .container {
+  top: 0px;
   display: inline-block;
-  width: 350px;
+  width: 430px;
   height: 75px;
   margin: 10px;
+  margin-left: 60px;
   list-style-type: none;
   ul {
     list-style-type: none;

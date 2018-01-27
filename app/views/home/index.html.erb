@@ -9,12 +9,16 @@
     </header>   
     
     <section class="recipes">
-      <div class="container">
-        <%= render 'home/partials/lastest_recipes' %>
-      </div>
-      
-      <div class="container">
-        <%= render 'home/partials/most_favorited_recipes' %>
+      <div class="row">
+        <div class="container">
+          <div class="col-sm-10"><%= render 'home/partials/lastest_recipes' %></div>
+          
+        </div>
+        
+        <div class="container">
+          <div class="col-sm-10"><%= render 'home/partials/most_favorited_recipes' %></div>
+          
+        </div>
       </div>
     </section>
     
