@@ -24,7 +24,7 @@ user3 = User.create(email: Faker::Internet.unique.email, password: Faker::LordOf
 user4 = User.create(email: Faker::Internet.unique.email, password: Faker::LordOfTheRings.character+'1234')
 user5 = User.create(email: Faker::Internet.unique.email, password: Faker::LordOfTheRings.character+'1234')
 
-recipe1 = Recipe.create(title: Faker::Food.unique.dish, 
+recipe1 = Recipe.create(title: Faker::Food.unique.dish,
               difficulty: Faker::Name.difficulty, 
               cook_time: Faker::Number.number(2),
               ingredients: Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient,

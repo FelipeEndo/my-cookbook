@@ -1,9 +1,7 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-header">
-  <li><%= link_to 'My Cookbook', root_path, class: 'navbar-brand' %></li>
-  </div>
-  <ul class="nav navbar-nav">
-  <li class='active'><%= link_to 'Todas as Receitas', list_recipes_path%></li>
+<div class 'menu'>
+<nav class='nav nav-tabs navbar-menu navbar-fixed-top'>
+  <li class='active'><%= link_to 'My Cookbook', root_path, class: 'navbar-brand' %></li>
+  <li><%= link_to 'Todas as Receitas', list_recipes_path%></li>
   <% if user_signed_in? %>
     <li><%= link_to 'Minhas Favoritas', my_favorites_recipes_path %></li>
     <li><%= link_to "Olá, #{current_user.email}"%></li>
@@ -15,8 +13,8 @@
   <% end %>
   
   <li id="search-box"><%= render 'layouts/search_form' %></li>
-  </ul>
 </nav>
+</div>
 
 <div class="sidenav">
   <%= render 'layouts/navbar_side' %>

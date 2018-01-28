@@ -1,0 +1,19 @@
+.container-fluid {
+  background-color: lightgrey;
+}
+
+.col-md-4 {
+  background-color: white;
+  margin: 50px;
+  left: 5%;
+}
+
+.vcenter {
+    margin-top: 25px;
+    left: -25px;
+}
+
+.description-center{
+
+  left: -50px;
+}

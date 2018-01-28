@@ -6,7 +6,7 @@ class Recipe < ApplicationRecord
   validates :title, :recipe_type, :difficulty, :cook_time, :ingredients, :method, :cuisine, presence: true
   has_many :favorites
   
-  has_attached_file :recipe_cover, styles: { medium: "300x300>", thumb: "150x150>" }, default_url: "/assets/sem-foto.gif"
+  has_attached_file :recipe_cover, styles: { medium: "300x300>", thumb: "150x150>" }, default_url: "/assets/recipe-cover.jpg"
   validates_attachment_content_type :recipe_cover, content_type: /\Aimage\/.*\z/
   
   def user_owner?(user)

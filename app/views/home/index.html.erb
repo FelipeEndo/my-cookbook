@@ -1,25 +1,20 @@
-  <div id="menu">
-    <%= render 'layouts/navbar' %>
-  </div> 
- 
- <div class="basic-grey">
-     <header>
+ <%= render '/layouts/navbar' %>
+   <div class='basic-grey'>
+    <header>
       <h1>CookBook</h1> 
       <p>Bem-vindo ao maior livro de receitas online</p>
-    </header>   
-    
-    <section class="recipes">
-      <div class="row">
-        <div class="container">
-          <div class="col-sm-10"><%= render 'home/partials/lastest_recipes' %></div>
-          
-        </div>
-        
-        <div class="container">
-          <div class="col-sm-10"><%= render 'home/partials/most_favorited_recipes' %></div>
-          
-        </div>
-      </div>
-    </section>
-    
+    </header>
+    <div class= 'container-fluid'>
+    <div class='row'>
+      
+      <aside class='col-md-4'>
+        <%= render 'home/partials/lastest_recipes' %>
+      </aside>
+      
+      <aside class='col-md-4'>
+        <%= render 'home/partials/most_favorited_recipes' %>
+      </aside>
+    </div>
   </div>
+</div>
+
