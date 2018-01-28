@@ -8,6 +8,11 @@
   left: 5%;
 }
 
+.col-md-3 {
+  background-color: white;
+  margin: 40px;
+}
+
 .vcenter {
     margin-top: 25px;
     left: -25px;
@@ -16,4 +21,21 @@
 .description-center{
 
   left: -50px;
+}
+
+.method {
+  padding-left: 40px;
+}
+
+.recipe-details {
+  padding: 0px;
+}
+
+.glyphicon {
+  font-size: 25px;
+  color: gold;
+}
+
+.options {
+  padding-top: 20px
 }

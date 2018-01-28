@@ -2,55 +2,62 @@
     <%= render 'layouts/navbar' %>
 </div> 
     
-<div class="main">
-    <% if flash[:notice] %>
-    <div class="alert alert-success alert-dismissable">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-     <p><%= flash[:notice] %></p> 
+<div class="basic-grey">
+  <% if flash[:notice] %>
+  <div class="alert alert-success alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+    <p><%= flash[:notice] %></p> 
     </div>
   <% end %>
   
-  <%= image_tag @recipe.recipe_cover.url(:thumb) %>
-  <h1><%= @recipe.title %> <%= image_tag 'star.png' if @recipe.featured %> </h1>
-  <% if user_signed_in? %>
-    <% if current_user.favorited?(@recipe)  %>
-      <p><%= link_to 'Remover dos Favoritos', destroy_favorite_recipe_path(recipe: @recipe), method: :delete %></p>
-    <% else %>
-      <p><%= link_to 'Adicionar aos Favoritos', favorite_recipe_path(recipe: @recipe, user: current_user), method: :post %></p>
-    <% end %>
-  <% end %>
-  
-  <p>Autor: <%= @recipe.user.email %></p>
-  <h3>Detalhes</h3>
-  <p><%= @recipe.recipe_type.name %></p> 
-  <p><%= @recipe.cuisine.name %></p>
-  <p><%= @recipe.difficulty %></p>
-  <p><%= @recipe.cook_time %> minutos</p>
-  <h3>Ingredientes</h3>
-  <p><%= @recipe.ingredients %></p>
-  <h3>Como Preparar</h3>
-  <p><%= @recipe.method %></p>
-  
-  <% if user_signed_in? && @recipe.user_owner?(current_user) %>
-  <%= link_to 'Editar', edit_recipe_path %>
-  <%= link_to 'Excluir', @recipe, method: :delete, data: { confirm: 'Tem certeza que deseja exclur esta receita?' }%>
-  <% end %>
-  <%= link_to 'Voltar', root_path %>
-  
-  <h3>Enviar esta receita para um amigo!</h3>
-  <%= form_tag(share_recipe_path, method: :post) do %>
-    <div>
-    <%= label_tag :name, 'Seu nome'%>
-    <%= text_field_tag :name %>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-3'>
+        <h1><%= @recipe.title %> <%= image_tag 'star.png' if @recipe.featured %> </h1>
+        
+        <p>Enviado por: <%= @recipe.user.email %></p>
+        <h3>Detalhes</h3>
+        <ul class= 'recipe-details'>
+          <li><b>Tipo:</b> <%= @recipe.recipe_type.name%></li>
+          <li><b>Cozinha:</b> <%= @recipe.cuisine.name%></li>
+          <li><b>Dificuldade:</b> <%= @recipe.difficulty%></li>
+          <li><b>Tempo:</b> <%= @recipe.cook_time %> minutos</li>
+        </ul>
+        
+        <h3>Ingredientes</h3>
+        <p><%= @recipe.ingredients %></p>
+
+        
+        <% if user_signed_in? && @recipe.user_owner?(current_user) %>
+          <%= link_to 'Editar', edit_recipe_path %>
+          <%= link_to 'Excluir', @recipe, method: :delete, data: { confirm: 'Tem certeza que deseja exclur esta receita?' }%>
+        <% end %>
+        <%= link_to 'Voltar', root_path %>
+      </div>
+      
+      <div class='col-md-6'>
+        <%= image_tag @recipe.recipe_cover.url(:large) %>
+        <div class='method'>
+        <h3>Como Preparar</h3>
+        <p><%= @recipe.method %></p>
+        
+        <div class='options'>
+          <% if user_signed_in? %>
+            <% if current_user.favorited?(@recipe)  %>
+              <p><%= link_to '', destroy_favorite_recipe_path(recipe: @recipe), method: :delete, class: 'glyphicon glyphicon-star' %>Remover dos Favoritos</p>
+            <% else %>
+              <p><%= link_to '', favorite_recipe_path(recipe: @recipe, user: current_user), method: :post, class: 'glyphicon glyphicon-star-empty' %> Adicionar aos Favoritos</p>
+            <% end %>
+          <% end %>
+          
+          <%= render '/recipes/partials/send_email' %>
+        </div>
+        
+      </div>
+    </div>
   </div>
-  <div>
-    <%= label_tag :email, 'Email'%>
-    <%= text_field_tag :email %>
-  </div>
-  <div>
-    <%= label_tag :message, 'Mensagem' %>
-    <%= text_area_tag :message %>
-  </div>
-  <%= submit_tag 'Enviar' %>
-  <% end %>
 </div>
+
+      
+
+      
