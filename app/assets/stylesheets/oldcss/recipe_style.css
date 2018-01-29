@@ -14,13 +14,13 @@
 }
 
 .vcenter {
-    margin-top: 25px;
-    left: -25px;
+    margin-top: -15px;
+    left: -45px;
 }
 
 .description-center{
 
-  left: -50px;
+  left: -70px;
 }
 
 .method {
@@ -39,3 +39,5 @@
 .options {
   padding-top: 20px
 }
+
+

@@ -1,0 +1,8 @@
+<div id="menu">
+  <%= render 'layouts/navbar' %>
+</div> 
+
+<div class="basic-grey">
+  <h1>Minhas receitas</h1>
+    <%= render partial: '/general_partials/recipe_list', locals: {recipes:  @my_recipes} %>
+</div>

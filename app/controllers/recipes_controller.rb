@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :destroy, :update]
+  before_action :authenticate_user!, only: [:new, :edit, :destroy, :update, :mine]
   before_action :set_recipe, only: [:show, :edit, :update,
                                     :favorite, :destroy_favorite, :share]
   helper_method :favorited?
@@ -82,6 +82,10 @@ class RecipesController < ApplicationController
     options_for_select
   end
 
+  def mine
+    options_for_select
+    user_recipes
+  end
   def favorite
     user = params[:user]
     recipe = params[:recipe]
@@ -126,6 +130,10 @@ private
     fav.each do |f|
       @favorites << f.recipe
     end
+  end
+  
+  def user_recipes
+    @my_recipes = Recipe.where(user: current_user)
   end
 
   def recipe_params

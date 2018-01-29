@@ -2,7 +2,7 @@
     <%= render 'layouts/navbar' %>
 </div> 
     
-<div class="main">
+<div class="basic-grey">
   <% if flash[:notice] %>
     <div class="alert alert-success alert-dismissable">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
@@ -10,15 +10,9 @@
     </div>
   <% end %>
   
-  <h1><%= @cuisine.name%></h1>
+  <h1><%="Filtro por Cozinha: #{@cuisine.name}"%></h1>
   <% if @recipes.count > 0 %>
-    <% @recipes.each do |recipe| %>
-  <h1><%=link_to recipe.title, recipe%></h1>
-      <li><%= recipe.recipe_type.name%></li>
-      <li><%= recipe.cuisine.name%></li>
-      <li><%= recipe.difficulty%></li>
-      <li><%= recipe.cook_time%> minutos</li>
-    <% end %>
+    <%= render partial: '/general_partials/recipe_list', locals: {recipes:  @recipes} %>
   <% else %>
      <p>Nenhuma receita encontrada para este tipo de cozinha</p>
   <% end %>

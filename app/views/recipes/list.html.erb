@@ -5,12 +5,6 @@
 <div class='basic-grey'>
   <h1>Todas as Receitas</h1>
   
-  <% @recipe_all.each do |recipe| %>
-    <%= image_tag recipe.recipe_cover.url(:thumb) %>
-    <h3><%= link_to recipe.title, recipe_path(recipe) %></h3>
-    <li><strong>Cozinha:</strong> <%= recipe.cuisine.name %></li>
-    <li><strong>Tipo:</strong> <%= recipe.recipe_type.name %></li>
-    <li><strong>Dificuldade:</strong> <%= recipe.difficulty %></li>
-  <% end %>
+<%= render partial: '/general_partials/recipe_list', locals: {recipes:  @recipe_all} %>
   
 </div>

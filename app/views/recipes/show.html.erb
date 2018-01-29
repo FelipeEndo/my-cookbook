@@ -36,7 +36,7 @@
       </div>
       
       <div class='col-md-6'>
-        <%= image_tag @recipe.recipe_cover.url(:large) %>
+        <%= image_tag @recipe.recipe_cover.url(:large), class: 'img-responsive img-rounded' %>
         <div class='method'>
         <h3>Como Preparar</h3>
         <p><%= @recipe.method %></p>
