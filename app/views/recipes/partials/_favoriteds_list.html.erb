@@ -1,8 +1,0 @@
-<% @favorites.each do |f| %>
-  <%= image_tag f.recipe.recipe_cover.url(:thumb) %>
-  <h1><%= link_to f.recipe.title, recipe_path(f.recipe) %></h1>
-  <li><%= f.recipe.recipe_type.name %></li>
-  <li><%= f.recipe.cuisine.name %></li>
-  <li><%= f.recipe.difficulty %></li>
-  <li><%= f.recipe.cook_time %> minutos</li>
-<% end %>

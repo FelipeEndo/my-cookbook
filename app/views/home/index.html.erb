@@ -8,11 +8,13 @@
     <div class='row'>
       
       <aside class='col-md-4'>
-        <%= render 'home/partials/lastest_recipes' %>
+        <h2>Últimas Receitas</h2>
+        <%= render partial: '/general_partials/recipe_list', locals: {recipes:  @index_recipes} %>
       </aside>
       
       <aside class='col-md-4'>
-        <%= render 'home/partials/most_favorited_recipes' %>
+        <h2>Favoritas por Usuários</h2>
+        <%= render partial: '/general_partials/recipe_list', locals: {recipes:  @most_favorited} %>
       </aside>
     </div>
   </div>
