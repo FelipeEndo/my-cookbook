@@ -9,12 +9,12 @@
       
       <aside class='col-md-4'>
         <h2>Últimas Receitas</h2>
-        <%= render partial: '/general_partials/recipe_list', locals: {recipes:  @index_recipes} %>
+        <%= render partial: '/shared/recipe_list', locals: {recipes:  @index_recipes} %>
       </aside>
       
       <aside class='col-md-4'>
         <h2>Favoritas por Usuários</h2>
-        <%= render partial: '/general_partials/recipe_list', locals: {recipes:  @most_favorited} %>
+        <%= render partial: '/shared/recipe_list', locals: {recipes:  @most_favorited} %>
       </aside>
     </div>
   </div>

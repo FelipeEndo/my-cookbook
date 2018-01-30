@@ -1,0 +1,18 @@
+<div class='container' style="max-width: 1000px">
+  <div class='row'>
+    <% recipes.each do |recipe| %>
+        <div class='col-md-2 vcenter '>
+          <%= image_tag recipe.recipe_cover.url(:thumb), class: 'img-responsive center-block cover'%>
+        </div>
+        <div class='col-md-2 description-center'>
+          <h3><%=link_to recipe.title, recipe%> <%= image_tag 'star.png' if recipe.featured %> </h3>
+          <ul class='list-unstyled'>
+            <li><b>Tipo:</b> <%= recipe.recipe_type.name%></li>
+            <li><b>Cozinha:</b> <%=recipe.cuisine.name%></li>
+            <li><b>Dificuldade:</b> <%=recipe.difficulty%></li>
+            <li><b>Tempo:</b> <%=recipe.cook_time %> minutos</li>
+          </ul>
+        </div>
+    <% end %>
+  </div>
+</div>

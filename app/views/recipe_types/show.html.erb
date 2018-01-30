@@ -14,7 +14,7 @@
   <h1><%="Filtro por Tipo: #{@recipe_type.name}"%></h1>
   
   <% if @recipes.count > 0 %>
-    <%= render partial: '/general_partials/recipe_list', locals: {recipes:  @recipes} %>
+        <%= render partial: '/shared/recipe_list_grid', locals: {recipes:  @recipes} %>
   <% else %>
    <p>Nenhuma receita encontrada para este tipo de receitas</p>
   <% end %>

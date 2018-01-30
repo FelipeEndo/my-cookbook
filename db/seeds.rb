@@ -18,13 +18,50 @@ cuisine3 = Cuisine.create(name: Faker::Name.unique.cuisine)
 cuisine4 = Cuisine.create(name: Faker::Name.unique.cuisine)
 cuisine5 = Cuisine.create(name: Faker::Name.unique.cuisine)
 
-user1 = User.create(email: Faker::Internet.unique.email, password: Faker::LordOfTheRings.character+'1234')
+user1 = User.create(email: 'qwerty@gmail.com', password: '123456')
+#user1 = User.create(email: Faker::Internet.unique.email, password: Faker::LordOfTheRings.character+'1234')
 user2 = User.create(email: Faker::Internet.unique.email, password: Faker::LordOfTheRings.character+'1234')
 user3 = User.create(email: Faker::Internet.unique.email, password: Faker::LordOfTheRings.character+'1234')
 user4 = User.create(email: Faker::Internet.unique.email, password: Faker::LordOfTheRings.character+'1234')
 user5 = User.create(email: Faker::Internet.unique.email, password: Faker::LordOfTheRings.character+'1234')
 
 recipe1 = Recipe.create(title: Faker::Food.unique.dish,
+              difficulty: Faker::Name.difficulty, 
+              cook_time: Faker::Number.number(2),
+              ingredients: Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient,
+              recipe_type: type1,
+              cuisine: cuisine1,
+              method: Faker::Lorem.sentence,
+              user: user1)
+              
+              Recipe.create(title: Faker::Food.unique.dish,
+              difficulty: Faker::Name.difficulty, 
+              cook_time: Faker::Number.number(2),
+              ingredients: Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient,
+              recipe_type: type1,
+              cuisine: cuisine1,
+              method: Faker::Lorem.sentence,
+              user: user1)
+              
+              Recipe.create(title: Faker::Food.unique.dish,
+              difficulty: Faker::Name.difficulty, 
+              cook_time: Faker::Number.number(2),
+              ingredients: Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient,
+              recipe_type: type1,
+              cuisine: cuisine1,
+              method: Faker::Lorem.sentence,
+              user: user1)
+              
+              Recipe.create(title: Faker::Food.unique.dish,
+              difficulty: Faker::Name.difficulty, 
+              cook_time: Faker::Number.number(2),
+              ingredients: Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient,
+              recipe_type: type1,
+              cuisine: cuisine1,
+              method: Faker::Lorem.sentence,
+              user: user1)
+              
+              Recipe.create(title: Faker::Food.unique.dish,
               difficulty: Faker::Name.difficulty, 
               cook_time: Faker::Number.number(2),
               ingredients: Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient+', '+Faker::Food.ingredient,
