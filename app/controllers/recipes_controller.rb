@@ -1,24 +1,23 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :destroy, :update, :mine]
-  before_action :set_recipe, only: [:show, :edit, :update,
-                                    :favorite, :destroy_favorite, :share]
-  helper_method :favorited?
+  before_action :authenticate_user!, only: %i[new edit destroy update mine]
+  before_action :set_recipe, only: %i[show edit update
+                                      favorite destroy_favorite share]
+  before_action :options_for_select,
+                only: %i[show new create edit update
+                         search my_favorites list mine]
 
   def show
     id = params[:id]
     @favorite = Favorite.new
     @recipe = Recipe.find id
     @cuisine = Cuisine.find(@recipe.cuisine_id).name
-    options_for_select
   end
 
   def new
     @recipe = Recipe.new
-    options_for_select
   end
 
   def create
-    options_for_select
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
 
@@ -34,16 +33,14 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find params[:id]
-
     if @recipe.user_owner?(current_user)
-      options_for_select
+      return
     else
       redirect_to root_path, notice: 'Você não tem permissão para isso!'
     end
   end
 
   def update
-    options_for_select
     @recipe = Recipe.find params[:id]
     if @recipe.user_owner?(current_user)
       if @recipe.update(recipe_params)
@@ -68,13 +65,12 @@ class RecipesController < ApplicationController
   end
 
   def search
-    options_for_select
     @query = params[:query]
-    @results = Recipe.where('title LIKE ? OR ingredients LIKE ?', @query, @query)
+    @results = Recipe.where('title LIKE ? OR ingredients LIKE ?',
+                            @query, @query)
   end
 
   def my_favorites
-    options_for_select
     user_favorites
   end
 
@@ -83,9 +79,9 @@ class RecipesController < ApplicationController
   end
 
   def mine
-    options_for_select
     user_recipes
   end
+
   def favorite
     user = params[:user]
     recipe = params[:recipe]
@@ -98,9 +94,11 @@ class RecipesController < ApplicationController
     recipe = params[:recipe]
     @favorite = Favorite.find_by user_id: current_user, recipe_id: params[:id]
     if @favorite.destroy
-      redirect_to recipe_path(recipe), notice: 'Receita removida dos favoritos.'
+      redirect_to recipe_path(recipe),
+                  notice: 'Receita removida dos favoritos.'
     else
-      redirect_to recipe_path(recipe), notice: 'Receita não pode ser removida dos favoritos'
+      redirect_to recipe_path(recipe),
+                  notice: 'Receita não pode ser removida dos favoritos'
     end
   end
 
@@ -118,37 +116,36 @@ end
 
 private
 
-  def options_for_select
-    @recipe_all = Recipe.all
-    @recipe_type_all = RecipeType.all
-    @cuisine_all = Cuisine.all
-  end
-  
-  def user_favorites
-    @favorites = []
-    fav = Favorite.where(user: current_user)
-    fav.each do |f|
-      @favorites << f.recipe
-    end
-  end
-  
-  def user_recipes
-    @my_recipes = Recipe.where(user: current_user)
-  end
+def options_for_select
+  @recipe_all = Recipe.all
+  @recipe_type_all = RecipeType.all
+  @cuisine_all = Cuisine.all
+end
 
-  def recipe_params
-    params.require(:recipe).permit(:title,
-                                   :cuisine_id,
-                                   :recipe_type_id,
-                                   :difficulty,
-                                   :cook_time,
-                                   :ingredients,
-                                   :method,
-                                   :recipe_cover,
-                                   :featured)
+def user_favorites
+  @favorites = []
+  fav = Favorite.where(user: current_user)
+  fav.each do |f|
+    @favorites << f.recipe
   end
+end
 
-  def set_recipe
-    @recipe = Recipe.find(params[:id])
-  end
-  
+def user_recipes
+  @my_recipes = Recipe.where(user: current_user)
+end
+
+def recipe_params
+  params.require(:recipe).permit(:title,
+                                 :cuisine_id,
+                                 :recipe_type_id,
+                                 :difficulty,
+                                 :cook_time,
+                                 :ingredients,
+                                 :method,
+                                 :recipe_cover,
+                                 :featured)
+end
+
+def set_recipe
+  @recipe = Recipe.find(params[:id])
+end
