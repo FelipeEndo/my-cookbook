@@ -126,7 +126,7 @@ private
   
   def user_favorites
     @favorites = []
-    fav = Favorite.where(user: User.find(6))
+    fav = Favorite.where(user: current_user)
     fav.each do |f|
       @favorites << f.recipe
     end

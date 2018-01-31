@@ -7,7 +7,7 @@ feature 'Recipe with author' do
     
     visit recipe_path(recipe)
     
-    expect(page).to have_css('p', text: 'Autor: '+recipe.user.email)
+    expect(page).to have_css('p', text: 'Enviado por: '+recipe.user.email)
   end
   
     scenario 'and can see edit button if is the author' do

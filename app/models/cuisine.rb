@@ -1,5 +1,4 @@
 class Cuisine < ApplicationRecord
-  has_many :recipes
+  has_many :recipes, dependent: :destroy
   validates :name, presence: true
-  
 end

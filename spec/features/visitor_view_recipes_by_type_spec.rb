@@ -20,7 +20,7 @@ feature 'Visitor view recipes by type' do
 
     # expectativas do usuário após a ação
     expect(page).to have_css('h1', text: recipe_type.name)
-    expect(page).to have_css('h1', text: recipe.title)
+    expect(page).to have_css('h3', text: recipe.title)
     expect(page).to have_css('li', text: recipe.recipe_type.name)
     expect(page).to have_css('li', text: recipe.cuisine.name)
     expect(page).to have_css('li', text: recipe.difficulty)
@@ -48,12 +48,12 @@ feature 'Visitor view recipes by type' do
     click_on main_recipe_type.name
 
     # expectativas do usuário após a ação
-    expect(page).to have_css('h1', text: main_recipe.title)
+    expect(page).to have_css('h3', text: main_recipe.title)
     expect(page).to have_css('li', text: main_recipe.recipe_type.name)
     expect(page).to have_css('li', text: main_recipe.cuisine.name)
     expect(page).to have_css('li', text: main_recipe.difficulty)
     expect(page).to have_css('li', text: "#{main_recipe.cook_time} minutos")
-    expect(page).not_to have_css('h1', text: dessert_recipe.title)
+    expect(page).not_to have_css('h3', text: dessert_recipe.title)
     expect(page).not_to have_css('li', text: dessert_recipe.recipe_type.name)
     expect(page).not_to have_css('li', text: dessert_recipe.cuisine.name)
     expect(page).not_to have_css('li', text: dessert_recipe.difficulty)

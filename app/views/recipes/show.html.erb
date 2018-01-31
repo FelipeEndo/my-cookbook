@@ -44,9 +44,9 @@
         <div class='options'>
           <% if user_signed_in? %>
             <% if current_user.favorited?(@recipe)  %>
-              <p><%= link_to '', destroy_favorite_recipe_path(recipe: @recipe), method: :delete, class: 'glyphicon glyphicon-star' %>Remover dos Favoritos</p>
+              <p><%= link_to 'Remover dos Favoritos', destroy_favorite_recipe_path(recipe: @recipe), method: :delete, class: 'glyphicon glyphicon-star' %></p>
             <% else %>
-              <p><%= link_to '', favorite_recipe_path(recipe: @recipe, user: current_user), method: :post, class: 'glyphicon glyphicon-star-empty' %> Adicionar aos Favoritos</p>
+              <p><%= link_to 'Adicionar aos Favoritos', favorite_recipe_path(recipe: @recipe, user: current_user), method: :post, class: 'glyphicon glyphicon-star-empty' %> </p>
             <% end %>
           <% end %>
           

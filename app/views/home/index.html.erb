@@ -14,7 +14,7 @@
       
       <aside class='col-md-4'>
         <h2>Favoritas por Usuários</h2>
-        <%= render partial: '/shared/recipe_list', locals: {recipes:  @most_favorited} %>
+        <div class='most_favorited'><%= render partial: '/shared/recipe_list', locals: {recipes:  @most_favorited} %></div>
       </aside>
     </div>
   </div>
